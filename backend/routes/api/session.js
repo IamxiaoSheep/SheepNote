@@ -17,6 +17,7 @@ const validateLogin = [
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User } = require("../../db/models");
 // Restore session user
+console.log(`this is dogshit`);
 
 router.get("/", restoreUser, (req, res) => {
   const { user } = req;
@@ -26,7 +27,6 @@ router.get("/", restoreUser, (req, res) => {
     });
   } else return res.json({});
 });
-
 router.post(
   "/",
   validateLogin,
