@@ -35,7 +35,7 @@ function Navigation({ isLoaded }) {
           <NavLink to="/signup">Sign Up</NavLink>
         </>
       )}
-      {isLoaded && sessionLinks}
+      {/* {isLoaded && sessionLinks} */}
     </div>
   );
 }
