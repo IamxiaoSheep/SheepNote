@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Redirect, Switch, Route } from "react-router-dom";
 import "./Splash.css";
-import logo from "../../imgs/evernote.png";
+import logo from "../../imgs/SheepNote-logos.jpeg";
 
 const SplashHomePage = () => {
   const presentUser = useSelector((state) => state.session.user);
@@ -15,7 +15,7 @@ const SplashHomePage = () => {
         </div>
         <img className="Logo" src={logo} alt="Logo" />
       </div>
-      <div className="blockA">Block A</div>
+
       <div className="blockB">Block B</div>
       <div className="blockC">Block C</div>
       <div className="blockD">Block D</div>
