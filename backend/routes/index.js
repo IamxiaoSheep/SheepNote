@@ -2,8 +2,15 @@
 const express = require("express");
 const router = express.Router();
 const apiRouter = require("./api");
+// const userGET = require("./api/userGET");
 
 router.use("/api", apiRouter);
+// router.use(userGET);
+
+router.get("/hello/world", function (req, res) {
+  res.cookie("XSRF-TOKEN", req.csrfToken());
+  res.send("Hello World!");
+});
 
 // Static routes
 // Serve React build files in production
