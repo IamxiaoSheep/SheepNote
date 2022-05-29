@@ -9,13 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       title: {
-        type: Sequelize.STRING(25),
+        type: Sequelize.STRING(1996),
       },
-      information: {
+      notedata: {
         type: Sequelize.TEXT,
       },
       notebookId: {
         references: { model: "NoteBooks" },
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       createdAt: {

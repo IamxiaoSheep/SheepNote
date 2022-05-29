@@ -28,13 +28,14 @@
 const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
-
+const notebooks = require("./notebook/GETnotebook");
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
+router.use(notebooks);
 
-router.post("/test", (req, res) => {
-  res.json({ requestBody: req.body });
+router.get("/test", (req, res) => {
+  res.redirect(notebooks);
 });
 
 module.exports = router;

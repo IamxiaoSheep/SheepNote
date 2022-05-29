@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const NoteBook = sequelize.define(
     "NoteBook",
     {
-      titlebook: DataTypes.STRING,
+      notetitle: DataTypes.STRING,
       userId: DataTypes.INTEGER,
     },
     {}

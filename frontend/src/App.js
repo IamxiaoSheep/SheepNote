@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./componenets/LoginFormPage";
-import SignupFormPage from "./componenets/SignupFormPage";
+import LoginFormPage from "./components/LoginFormPage";
+import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./componenets/Navigation";
-import SplashHomePage from "./componenets/SplashPage";
+import Navigation from "./components/Navigation";
+import SplashHomePage from "./components/SplashPage";
+import NoteBook from "./components/Main/AllNoteBooks";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/profile/notebook">
+            <NoteBook />
+          </Route>
+          <Route>Page Not Found</Route>
         </Switch>
       )}
     </>

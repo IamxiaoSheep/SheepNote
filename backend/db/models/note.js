@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     "Note",
     {
       title: DataTypes.STRING,
-      information: DataTypes.TEXT,
+      notedata: DataTypes.TEXT,
       notebookId: DataTypes.INTEGER,
     },
     {}

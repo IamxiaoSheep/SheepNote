@@ -4,4 +4,14 @@ const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../../utils/auth");
-const { User, NoteBook } = require("../../../db/models");
+const db = require("../../../db/models");
+
+router.get(
+  "/profile/notebook",
+  asyncHandler(async (req, res) => {
+    const notebooks = await db.User.findAll({});
+    res.json(notebooks);
+  })
+);
+
+module.exports = router;
