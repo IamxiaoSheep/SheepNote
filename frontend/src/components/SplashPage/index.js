@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { NavLink, Redirect, Switch, Route } from "react-router-dom";
 import "./Splash.css";
 import logo from "../../imgs/SheepNote-logos.jpeg";
 
