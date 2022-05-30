@@ -5,8 +5,8 @@ import "./Splash.css";
 import logo from "../../imgs/SheepNote-logos.jpeg";
 
 const SplashHomePage = () => {
-  const presentUser = useSelector((state) => state.session.user);
-  if (presentUser) return <Redirect to="/lobby" />;
+  // const presentUser = useSelector((state) => state.session.user);
+  // if (!presentUser) return <Redirect to="/lobby" />;
   return (
     <div className="mainbody">
       <div className="blockWelcome">

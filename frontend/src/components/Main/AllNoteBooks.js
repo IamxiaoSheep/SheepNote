@@ -14,7 +14,7 @@ const AllNotebooks = () => {
   const checkNotes = useSelector((state) => state.notebook);
 
   // console.log(Object.values(checkNotes), `Without dispatch`);
-  console.log(checkNotes, `regular`);
+  // console.log(checkNotes, `regular`);
   const mp = checkNotes.map((el) => {
     return <li key={el.id}>{el.username}</li>;
   });
@@ -24,11 +24,6 @@ const AllNotebooks = () => {
   return (
     <section>
       <h2>Test User</h2>
-      {/* <p>
-        {checkNotes.map((el) => {
-          return el.username;
-        })}
-      </p> */}
       <ul>{mp}</ul>
     </section>
   );
