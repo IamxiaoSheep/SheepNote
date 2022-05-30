@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashHomePage from "./components/SplashPage";
 import NoteBook from "./components/Main/AllNoteBooks";
+// import { AllNoteBooks } from "./components/Main/AllNoteBooks";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,24 +18,26 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <SplashHomePage />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/profile/notebook">
-            <NoteBook />
-          </Route>
-          <Route>Page Not Found</Route>
-        </Switch>
-      )}
+      <Switch>
+        <Route exact from="/">
+          <SplashHomePage />
+        </Route>
+        <Route path="/login">
+          <Navigation isLoaded={isLoaded} />
+          <LoginFormPage />
+        </Route>
+        <Route path="/signup">
+          <Navigation isLoaded={isLoaded} />
+          <SignupFormPage />
+        </Route>
+        <Route path="/profile/notebook">
+          <NoteBook />
+        </Route>
+        <Route path="/home">
+          <Navigation isLoaded={isLoaded} />
+        </Route>
+        <Route>Page Not Found</Route>
+      </Switch>
     </>
   );
 }

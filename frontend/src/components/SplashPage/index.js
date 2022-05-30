@@ -1,24 +1,38 @@
 import React from "react";
+import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./Splash.css";
-import logo from "../../imgs/SheepNote-logos.jpeg";
+import { useState } from "react";
+// import { NavLink, Link } from "react-router-dom";
+// import logo from "../../imgs/SheepNote-logos.jpeg";
 
 const SplashHomePage = () => {
   // const presentUser = useSelector((state) => state.session.user);
   // if (!presentUser) return <Redirect to="/lobby" />;
-  return (
-    <div className="mainbody">
-      <div className="blockWelcome">
-        <div>
-          Save 40% on Personal And get your plans off the ground. Ends 6/5.
-        </div>
-        <img className="Logo" src={logo} alt="Logo" />
-      </div>
+  const [timePassed, setTimePassed] = useState(false);
 
-      <div className="blockB">Block B</div>
-      <div className="blockC">Block C</div>
-      <div className="blockD">Block D</div>
-    </div>
-  );
+  setTimeout(function () {
+    setTimePassed(true);
+  }, 3000);
+
+  if (!timePassed) {
+    return (
+      <div className="container">
+        <span className="title">S</span>
+        <span className="title">H</span>
+        <span className="title">E</span>
+        <span className="title">E</span>
+        <span className="title">P</span>
+        <span className="title">N</span>
+        <span className="title">O</span>
+        <span className="title">T</span>
+        <span className="title">E</span>
+      </div>
+    );
+  } else {
+    return <Redirect to="/home" />;
+  }
 };
 
 export default SplashHomePage;
