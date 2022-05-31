@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import SplashHomePage from "./components/SplashPage";
 import NoteBook from "./components/Main/AllNoteBooks";
 import Home from "./components/Home";
+import MyNoteBook from "./components/MyNoteBooks";
 // import { AllNoteBooks } from "./components/Main/AllNoteBooks";
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
       <Route path="/home">
         <Navigation isLoaded={isLoaded} />
         <Home />
+      </Route>
+      <Route path="/mynotebooks">
+        <MyNoteBook />
       </Route>
       <Route>Page Not Found</Route>
     </Switch>

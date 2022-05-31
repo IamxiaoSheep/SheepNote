@@ -77,18 +77,26 @@ a:hover {
 .text-part {
   width: 65%;
   height: 80%;
+  margin-top: 10rem;
 }
 .about-area {
   background-color: #fefefe;
 }
 .port-area {
-  background-color: #262626;
+  background-color: #81d8d0;
   color: #fff;
 }
 .service-area {
   background-color: #fefefe;
 }
 .contact-area {
-  background-color: #262626;
+  background-color: #81d8d0;
   color: #fff;
+}
+
+.gif {
+  margin-top: 3rem;
+  height: 20rem;
+  width: 35rem;
+  margin-left: -0.1rem;
 }

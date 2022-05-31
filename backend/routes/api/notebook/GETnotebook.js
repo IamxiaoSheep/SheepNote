@@ -15,6 +15,7 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const userId = Number(req.user.dataValues.id);
+    console.log(userId);
     const notebooks = await db.NoteBook.findAll({
       where: { userId },
     });

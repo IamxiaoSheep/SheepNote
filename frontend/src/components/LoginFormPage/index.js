@@ -27,7 +27,7 @@ function LoginFormPage() {
 
   return (
     <div className="loginbox">
-      <img src={logo} className="avatar"></img>
+      <img src={logo} className="avatar" alt="sheep"></img>
       <form onSubmit={handleSubmit} className="login hi">
         <ul>
           {errors.map((error, idx) => (

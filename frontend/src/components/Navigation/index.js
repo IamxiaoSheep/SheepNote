@@ -26,6 +26,9 @@ function Navigation({ isLoaded }) {
               <li>
                 <ProfileButton user={sessionUser} />
               </li>
+              <li>
+                <NavLink to="/mynotebooks">My Notes</NavLink>
+              </li>
             </ul>
           </div>
         </>

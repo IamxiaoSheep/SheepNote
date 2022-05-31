@@ -1,11 +1,11 @@
 import { csrfFetch } from "./csrf";
 
-const GET_ALL_NOTEBOOKS = "notebooks/all_notes";
+const GET_ALL_THE_NOTEBOOKS = "notebooks/all_notes";
 
 // Action
 const getNotebooks = (notebooks) => {
   return {
-    type: GET_ALL_NOTEBOOKS,
+    type: GET_ALL_THE_NOTEBOOKS,
     notebooks,
   };
 };
@@ -23,7 +23,7 @@ const initialState = { notebooks: null };
 const notebookReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case GET_ALL_NOTEBOOKS:
+    case GET_ALL_THE_NOTEBOOKS:
       newState = {};
       action.notebooks.forEach((notebook) => {
         newState[notebook.id] = notebook;
