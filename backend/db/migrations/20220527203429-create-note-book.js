@@ -8,11 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      titlebook: {
+      notetitle: {
         allowNull: false,
-        type: Sequelize.STRING(25),
+        type: Sequelize.STRING(1996),
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Users" },
       },

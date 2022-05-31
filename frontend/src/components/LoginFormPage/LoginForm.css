@@ -1,0 +1,22 @@
+.loginbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: aliceblue;
+}
+
+.avatar {
+  position: absolute;
+  margin-left: 11rem;
+  margin-top: 5rem;
+  width: 10rem;
+  background-color: aliceblue;
+}
+
+:root {
+  background: black;
+}
+body {
+  background: black;
+}
