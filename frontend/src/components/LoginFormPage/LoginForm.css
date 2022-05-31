@@ -1,3 +1,17 @@
-.test {
-  background-color: yellow;
+:root {
+  background: white;
+}
+
+.loginbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatar {
+  position: absolute;
+  margin-left: 11rem;
+  margin-top: 3rem;
+  width: 10rem;
 }
