@@ -8,6 +8,7 @@ function MyNoteBook() {
   const [info, setInfo] = useState("Hello");
 
   const checkNotes = useSelector((state) => state.notebook);
+
   const user = useSelector((state) => state.session);
   const information = (e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ function MyNoteBook() {
   return (
     <div className="notebook">
       <div className="left">
-        <div className="username">{user.user?.username}</div>
+        <div className="username">{currentNoteBooks}</div>
         <Link className="homeLink" to="/">
           Home
         </Link>

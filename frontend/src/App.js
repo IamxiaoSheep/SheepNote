@@ -9,6 +9,7 @@ import SplashHomePage from "./components/SplashPage";
 import NoteBook from "./components/Main/AllNoteBooks";
 import Home from "./components/Home";
 import MyNoteBook from "./components/MyNoteBooks";
+import Sandbox from "./components/Sandbox";
 // import { AllNoteBooks } from "./components/Main/AllNoteBooks";
 
 function App() {
@@ -38,7 +39,8 @@ function App() {
         <Home />
       </Route>
       <Route path="/mynotebooks">
-        <MyNoteBook />
+        <Sandbox />
+        {/* <MyNoteBook /> */}
       </Route>
       <Route>Page Not Found</Route>
     </Switch>

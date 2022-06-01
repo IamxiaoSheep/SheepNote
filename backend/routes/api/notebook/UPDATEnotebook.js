@@ -10,16 +10,13 @@ const {
 } = require("../../../utils/auth");
 const db = require("../../../db/models");
 
-router.get(
-  "/profile/notebook",
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const userId = Number(req.user.dataValues.id);
-    const notebooks = await db.NoteBook.findAll({
-      where: { userId },
-    });
-    res.json(notebooks);
-  })
-);
+router.put("/profile/notebook", async (req, res) => {
+  const notebookId = req.body.id;
+  const newInfo = req.body.input;
+  const notebook = await db.NoteBook.findByPk(notebookId);
+  notebook.notetitle = newInfo;
+  await notebook.save();
+  return res.json(notebook);
+});
 
 module.exports = router;
