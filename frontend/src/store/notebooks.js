@@ -2,31 +2,39 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_THE_NOTEBOOKS = "notebooks/all_notebook";
 const CREATE_A_NOTEBOOK = "notebooks/create_notebook";
-const UPDATE_A_NOTEBOOK = "notebokos/update-_notebook";
+const UPDATE_A_NOTEBOOK = "notebooks/update_notebook";
+const DELETE_A_NOTEBOOK = "notebooks/delete_notebook";
 
-// WORKING THE READ
+// READING WORKING
 const getNotebooks = (notebooks) => {
   return {
     type: GET_ALL_THE_NOTEBOOKS,
     notebooks,
   };
 };
-//NOT WORKING YET THE CREATE
+//CREATE WORKING
 const addNotebook = (notebooks) => {
   return {
     type: CREATE_A_NOTEBOOK,
     notebooks,
   };
 };
-//
+//UPDATE WORKING
 const updateNotebook = (notebooks) => {
   return {
     type: UPDATE_A_NOTEBOOK,
     notebooks,
   };
 };
+//DELETE WORKING
+const deleteNotebook = (notebooks) => {
+  return {
+    type: DELETE_A_NOTEBOOK,
+    notebooks,
+  };
+};
 
-// Thunks GET THE NOTEBOOK TITLE THE READ OF CRUD
+// READ THUNK
 export const getAllNotebooks = () => async (dispatch) => {
   const response = await csrfFetch("/api/profile/notebook");
   const data = await response.json();
@@ -34,7 +42,7 @@ export const getAllNotebooks = () => async (dispatch) => {
   return response;
 };
 
-//UPDATE!!!  SAVE THE NOTEBOOK TITLE
+//UPDATE THUNK
 export const saveNotebooks = (id, input) => async (dispatch) => {
   const response = await csrfFetch("/api/profile/notebook", {
     method: "PUT",
@@ -45,30 +53,28 @@ export const saveNotebooks = (id, input) => async (dispatch) => {
   return response;
 };
 
-//UPDATE!!!  SAVE THE NOTEBOOK TITLE
+//DELETE THUNK
 export const deleteNotebooks = (id) => async (dispatch) => {
   const response = await csrfFetch("/api/profile/notebook", {
     method: "DELETE",
     body: JSON.stringify({ id }),
   });
   const data = await response.json();
-  dispatch(updateNotebook(data));
+  dispatch(deleteNotebook(data));
+  console.log(data, ` DELETE THUNK`);
   return response;
 };
-// export const createANotebook = (info) => async (dispatch) => {
-//   const { userId, notetitle } = info;
-//   const data = { userId, notetitle };
-//   console.log(info);
-//   const response = await csrfFetch("/api/profile/notebook", {
-//     method: "POST",
-//     body: JSON.stringify(data),
-//   });
-//   console.log(response);
-//   const notebooks = await response.json();
-//   console.log(notebooks);
-//   dispatch(addNote(notebooks));
-//   return response;
-// };
+
+//CREATE THUNK
+export const createNotebooks = (titleName, id) => async (dispatch) => {
+  const response = await csrfFetch("/api/profile/notebook", {
+    method: "POST",
+    body: JSON.stringify({ titleName, id }),
+  });
+  const notebooks = await response.json();
+  dispatch(addNotebook(notebooks));
+  return notebooks;
+};
 
 const initialState = { notebooks: null };
 
@@ -84,11 +90,13 @@ const notebookReducer = (state = initialState, action) => {
     case CREATE_A_NOTEBOOK:
       return { ...state, notebooks: action.notebooks };
     case UPDATE_A_NOTEBOOK:
-      console.log(action.notebooks, `<----Reducer`);
       newState = { ...state };
       newState[action.notebooks.id] = action.notebooks;
       return newState;
-
+    case DELETE_A_NOTEBOOK:
+      newState = { ...state };
+      delete newState[action.notebooks];
+      return newState;
     default:
       return state;
   }

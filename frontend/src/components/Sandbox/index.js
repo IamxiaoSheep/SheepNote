@@ -9,6 +9,7 @@ import {
   getAllNotebooks,
   saveNotebooks,
   deleteNotebooks,
+  createNotebooks,
 } from "../../store/notebooks";
 
 function Sandbox() {
@@ -23,6 +24,9 @@ function Sandbox() {
   //THIS IS WHERE THE ARRAY FOR THE VIEW IS
   const [inputList, setInputList] = useState([]);
   const [id, setId] = useState(0);
+  const userId = user?.id;
+  const [title, setTitle] = useState(false);
+  const [titleName, settitleName] = useState("");
 
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.notebook);
@@ -63,11 +67,31 @@ function Sandbox() {
   };
 
   /// (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
-  const updatenote = () => {
+  const updatenotebook = () => {
     dispatch(saveNotebooks(id, inputList));
   };
-  const deletenote = () => {
+
+  //DELETEING NOTEBOOK
+  const deletenotebook = () => {
     dispatch(deleteNotebooks(id));
+  };
+
+  //CREATING NOTEBOOK
+  const createnotebook = () => {
+    setTitle(true);
+  };
+
+  const submitTitle = (e) => {
+    e.preventDefault();
+    dispatch(createNotebooks(titleName, userId));
+  };
+  const titlenameHandler = (e) => {
+    settitleName(e.target.value);
+  };
+
+  const cancelClick = () => {
+    settitleName("");
+    setTitle(false);
   };
 
   return (
@@ -89,8 +113,26 @@ function Sandbox() {
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
               <textarea value={inputList} onChange={changeValue}></textarea>
-              <button onClick={updatenote}>Save!</button>
-              <button onClick={deletenote}>Delete NoteBook!</button>
+              <button onClick={updatenotebook}>Save!</button>
+              <button onClick={deletenotebook}>Delete NoteBook!</button>
+              {title ? (
+                <div>
+                  <section>
+                    <form onSubmit={submitTitle}>
+                      <input
+                        type="text"
+                        value={titleName}
+                        onChange={titlenameHandler}
+                        placeholder="Title"
+                      ></input>
+                      <button type="submit">Save!</button>
+                      <button onClick={cancelClick}>Cancel!</button>
+                    </form>
+                  </section>
+                </div>
+              ) : (
+                <button onClick={createnotebook}>Create A NoteBook!</button>
+              )}
             </div>
           </div>
         </div>

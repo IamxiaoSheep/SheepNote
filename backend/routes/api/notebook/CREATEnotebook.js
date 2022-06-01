@@ -10,28 +10,14 @@ const {
 } = require("../../../utils/auth");
 const db = require("../../../db/models");
 
-// router.post(
-//   "/sandbag",
-//   requireAuth,
-//   asyncHandler(async (req, res) => {
-//     const { userId, notetitle } = req.body;
-//     console.log(userId, notetitle);
-//     const notebook = await db.Notebook.create({
-//       notetitle,
-//       userId,
-//       createdAt: new Date(),
-//       updatedAt: new Date(),
-//     });
-//     console.log(`Continue =====`);
-//     return res.json(notebook);
-//   })
-// );
+router.post("/profile/notebook", async (req, res) => {
+  const { id, titleName } = req.body;
 
-router.post("/sandbag", async (req, res) => {
-  console.log(req.body);
-  // const notebook = await db.NoteBook.create({ userId: 1, notetitle: "sup" });
-  // console.log(notebook);
-  res.send({ hello: "Hello" });
+  const notebook = await db.NoteBook.create({
+    userId: id,
+    notetitle: titleName,
+  });
+  res.json(notebook);
 });
 
 module.exports = router;
