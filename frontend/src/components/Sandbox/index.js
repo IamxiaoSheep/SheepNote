@@ -59,7 +59,7 @@ function Sandbox() {
     if (user) {
       setView(true);
     }
-  }, [user, checkNotes]);
+  }, [user]);
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changeValue = (e) => {
@@ -74,6 +74,7 @@ function Sandbox() {
   //DELETEING NOTEBOOK
   const deletenotebook = () => {
     dispatch(deleteNotebooks(id));
+    setInputList([]);
   };
 
   //CREATING NOTEBOOK
@@ -89,7 +90,8 @@ function Sandbox() {
     settitleName(e.target.value);
   };
 
-  const cancelClick = () => {
+  const cancelClick = (e) => {
+    e.preventDefault();
     settitleName("");
     setTitle(false);
   };
@@ -125,7 +127,7 @@ function Sandbox() {
                         onChange={titlenameHandler}
                         placeholder="Title"
                       ></input>
-                      <button type="submit">Save!</button>
+                      <button type="submit">Confirm!</button>
                       <button onClick={cancelClick}>Cancel!</button>
                     </form>
                   </section>
