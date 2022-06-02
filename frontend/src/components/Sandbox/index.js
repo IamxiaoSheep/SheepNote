@@ -16,7 +16,6 @@ import {
 function Sandbox() {
   const dispatch = useDispatch();
   const { noteId } = useParams();
-  console.log(noteId);
   const history = useHistory();
 
   //CHECK IF THE USER IS LOGGED IN
@@ -56,7 +55,7 @@ function Sandbox() {
 
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
-    dispatch(getAllNotebooks());
+    dispatch(getAllNotebooks(id));
   }, [dispatch]);
 
   //CHECK THE USER EXISTENCE
