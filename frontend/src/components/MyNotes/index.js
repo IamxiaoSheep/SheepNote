@@ -85,14 +85,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 
-// import "./LoginForm.css";
-import { createNote, getAllNotes, deleteAllNotes } from "../../store/notes";
+import "./what.css";
+import {
+  createNote,
+  getAllNotes,
+  deleteAllNotes,
+  saveNotes,
+} from "../../store/notes";
 
 function MyNotes() {
   const dispatch = useDispatch();
   const { noteId } = useParams();
   const history = useHistory();
-  const arr = [];
+  // const arr = [];
 
   //CHECK IF THE USER IS LOGGED IN
   const user = useSelector((state) => state.session.user);
@@ -105,8 +110,14 @@ function MyNotes() {
   const [id, setId] = useState(0);
   const userId = user?.id;
   const [title, setTitle] = useState(false);
+
+  //WHEN CREATING NEW DATA
   const [titleName, settitleName] = useState("");
-  const [open, setOpen] = useState("false");
+  const [titleData, settitleData] = useState("");
+
+  //WHEN EDITING THE DATA
+  const [noteTitle, setnoteTitle] = useState("");
+  const [noteData, setNoteData] = useState("");
 
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.note);
@@ -115,7 +126,10 @@ function MyNotes() {
   const theCurrentSelectedNoteBook = (e) => {
     let title = e.target.getAttribute("data-id");
     let data = e.target.getAttribute("data-note");
-    setId(e.target.getAttribute("data-id"));
+    setnoteTitle(title);
+    setNoteData(data);
+    setId(e.target.getAttribute("data-key"));
+
     setInputList(`${title} ${data}`);
   };
 
@@ -125,6 +139,8 @@ function MyNotes() {
       <div
         className="button-7"
         value={el?.title}
+        key={el?.id + 1}
+        data-key={el?.id}
         data-id={el?.title}
         data-note={el?.notedata}
         onClick={theCurrentSelectedNoteBook}
@@ -136,18 +152,6 @@ function MyNotes() {
       </div>
     </>
   ));
-  /// READ THE VALUES OF THE CURRENT USER DATABASE
-  // const currentNoteData = Object.values(checkNotes).map((el) => (
-  //   <textarea
-  //     className="button-7"
-  //     value={el?.notedata}
-  //     data-id={el?.id}
-  //     onClick={theCurrentSelectedNoteBook}
-  //   >
-  //     {el?.title}
-  //   </textarea>
-  // ));
-
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
     dispatch(getAllNotes(noteId));
@@ -161,15 +165,19 @@ function MyNotes() {
   }, [user]);
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
-  const changeValue = (e) => {
-    console.log(e.target.value, ` what the fuck is this shit??`);
-    setInputList(e.target.value);
+  const changetitle = (e) => {
+    console.log(e.target.value);
+    setnoteTitle(e.target.value);
+  };
+  const changedata = (e) => {
+    console.log(e.target.value);
+    setNoteData(e.target.value);
   };
 
-  /// (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
-  // const updatenotebook = () => {
-  //   dispatch(saveNotebooks(id, inputList));
-  // };
+  // (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
+  const updatenote = () => {
+    dispatch(saveNotes(noteTitle, noteData, noteId));
+  };
 
   //DELETEING NOTEBOOK
   const deletenotebook = () => {
@@ -178,16 +186,24 @@ function MyNotes() {
   };
 
   //CREATING NOTEBOOK
-  const createnotebook = () => {
+  const createnote = () => {
     setTitle(true);
   };
 
   const submitTitle = (e) => {
     e.preventDefault();
-    dispatch(createNote(titleName, userId));
+    dispatch(createNote(titleName, titleData, noteId));
+    console.log(`DOES IT COME IN HERE?`);
+    settitleName("");
+    settitleData("");
+    setTitle(false);
+    dispatch(getAllNotes(noteId));
   };
   const titlenameHandler = (e) => {
     settitleName(e.target.value);
+  };
+  const titledataHandler = (e) => {
+    settitleData(e.target.value);
   };
 
   const cancelClick = (e) => {
@@ -212,7 +228,7 @@ function MyNotes() {
               </ul>
             </div>
           </nav>
-          <div className="onemaininfo">
+          <div className="onemaininfonote">
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             {/* <ul className="thenotes">{currentNoteTitle}</ul> */}
             <ul className="thenotes">
@@ -221,27 +237,42 @@ function MyNotes() {
             </ul>
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
-              <textarea value={inputList} onChange={changeValue}></textarea>
-              {/* <button onClick={updatenotebook}>Save!</button> */}
+              <textarea value={noteTitle} onChange={changetitle}></textarea>
+              <textarea value={noteData} onChange={changedata}></textarea>
+              <button onClick={updatenote}>Save!</button>
               <button onClick={deletenotebook}>Delete NoteBook!</button>
-              <button onClick={opennotebook}>Open Notebook!</button>
+
               {title ? (
-                <div>
-                  <section>
-                    <form onSubmit={submitTitle}>
-                      <input
-                        type="text"
-                        value={titleName}
-                        onChange={titlenameHandler}
-                        placeholder="Title"
-                      ></input>
-                      <button type="submit">Confirm!</button>
-                      <button onClick={cancelClick}>Cancel!</button>
-                    </form>
-                  </section>
-                </div>
+                <>
+                  <div>
+                    <section>
+                      <form onSubmit={submitTitle}>
+                        <input
+                          type="text"
+                          value={titleName}
+                          onChange={titlenameHandler}
+                          placeholder="Title"
+                        ></input>
+                        <button type="submit">Confirm!</button>
+                        <button onClick={cancelClick}>Cancel!</button>
+                      </form>
+                    </section>
+                    <div>
+                      <section>
+                        <form onSubmit={submitTitle}>
+                          <input
+                            type="text"
+                            value={titleData}
+                            onChange={titledataHandler}
+                            placeholder="Data"
+                          ></input>
+                        </form>
+                      </section>
+                    </div>{" "}
+                  </div>
+                </>
               ) : (
-                <button onClick={createnotebook}>Create A NoteBook!</button>
+                <button onClick={createnote}>Create A Note!</button>
               )}
             </div>
           </div>

@@ -10,24 +10,15 @@ const {
 } = require("../../../utils/auth");
 const db = require("../../../db/models");
 
-router.post("/profile/notebook/:id", async (req, res) => {
-  // console.log("Does it go in here");
-  const { noteId } = req.body;
+router.post("/profile/notebook/:id", requireAuth, async (req, res) => {
+  const { titleName, titleData, noteId } = req.body;
+
   const note = await db.Note.create({
-    title: "This is 26 's title",
-    notedata: "Created a note",
-    notebookId: 26,
+    title: titleName,
+    notedata: titleData,
+    notebookId: noteId,
   });
-  // title: DataTypes.STRING,
-  //   notedata: DataTypes.TEXT,
-  //   notebookId: DataTypes.INTEGER,
-  // console.log(noteId);
-  // const notebook = await db.NoteBook.create({
-  //   userId: id,
-  //   notetitle: titleName,
-  // });
-  // res.json(notebook);
-  res.send("hello");
+  res.json(note);
 });
 
 module.exports = router;

@@ -89,6 +89,7 @@ function Sandbox() {
   const submitTitle = (e) => {
     e.preventDefault();
     dispatch(createNotebooks(titleName, userId));
+    dispatch(getAllNotebooks(id));
   };
   const titlenameHandler = (e) => {
     settitleName(e.target.value);

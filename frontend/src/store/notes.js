@@ -19,39 +19,56 @@ const addNote = (notes) => {
     notes,
   };
 };
+// @TODO CREATE NOTE
+const updatNote = (notes) => {
+  return {
+    type: UPDATE_A_NOTE,
+    notes,
+  };
+};
 
 //CREATE THUNK
-export const createNote = (noteId, notedata, title) => async (dispatch) => {
-  const notebookId = noteId;
-  const response = await csrfFetch(`/api/profile/notebook/${notebookId}`, {
-    method: "POST",
-    body: JSON.stringify({ notebookId, notedata, title }),
-  });
-  const notebooks = await response.json();
-  dispatch(addNote(notebooks));
-  // return notebooks;
-};
+export const createNote =
+  (titleName, titleData, noteId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/profile/notebook/${noteId}`, {
+      method: "POST",
+      body: JSON.stringify({ titleName, titleData, noteId }),
+    });
+
+    const notes = await response.json();
+    dispatch(addNote(notes));
+    return notes;
+  };
 
 // READ THUNK
 export const getAllNotes = (id) => async (dispatch) => {
-  console.log(`THIS IS THE ID ${id}`);
-
   const response = await csrfFetch(`/api/profile/notebook/${id}`);
   const data = await response.json();
   dispatch(getNote(data));
   console.log(data);
   return response;
 };
-// READ THUNK
+// DELETE THUNK
 export const deleteAllNotes = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/profile/notebook/${id}`);
   const data = await response.json();
   dispatch(getNote(data));
-  console.log(data);
+
   return response;
 };
 
-const initialState = { notebooks: null };
+// SAVE THUNK
+export const saveNotes = (id, inputList, noteid) => async (dispatch) => {
+  const response = await csrfFetch(`/api/profile/notebook/${noteid}`, {
+    method: "PUT",
+    body: JSON.stringify({ id, inputList, noteid }),
+  });
+  const data = await response.json();
+  dispatch(updatNote(data));
+  return response;
+};
+
+const initialState = { notes: null };
 
 const noteReducer = (state = initialState, action) => {
   let newState;
@@ -63,14 +80,14 @@ const noteReducer = (state = initialState, action) => {
       });
       return newState;
     case CREATE_A_NOTE:
-      return { ...state, notebooks: action.notebooks };
+      return { ...state, notes: action.notes };
     case UPDATE_A_NOTE:
       newState = { ...state };
-      newState[action.notebooks.id] = action.notebooks;
+      newState[action.notes.id] = action.notes;
       return newState;
     case DELETE_A_NOTE:
       newState = { ...state };
-      delete newState[action.notebooks];
+      delete newState[action.notes];
       return newState;
     default:
       return state;
