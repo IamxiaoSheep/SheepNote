@@ -28,11 +28,17 @@
 const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
-const notebooks = require("./notebook/GETnotebook");
+const GETnotebooks = require("./notebook/GETnotebook");
+const POSTnotebooks = require("./notebook/CREATEnotebook");
+const UPDATEnotbooks = require("./notebook/UPDATEnotebook");
+const DELETEnotebooks = require("./notebook/DELETEnotebook");
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
-router.use(notebooks);
+router.use(GETnotebooks);
+router.use(POSTnotebooks);
+router.use(UPDATEnotbooks);
+router.use(DELETEnotebooks);
 
 router.get("/test", (req, res) => {
   res.redirect(notebooks);
