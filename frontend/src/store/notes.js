@@ -6,7 +6,7 @@ const UPDATE_A_NOTE = "notes/update_notebook";
 const DELETE_A_NOTE = "notes/delete_notebook";
 
 // @TODO CREATE NOTE
-const addNotebook = (notes) => {
+const addNote = (notes) => {
   return {
     type: CREATE_A_NOTE,
     notes,
@@ -14,14 +14,15 @@ const addNotebook = (notes) => {
 };
 
 //CREATE THUNK
-export const createNote = (noteId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/profile/notebook/${noteId}`, {
+export const createNote = (noteId, notedata, title) => async (dispatch) => {
+  const notebookId = noteId;
+  const response = await csrfFetch(`/api/profile/notebook/${notebookId}`, {
     method: "POST",
-    body: JSON.stringify({ noteId }),
+    body: JSON.stringify({ notebookId, notedata, title }),
   });
   const notebooks = await response.json();
-  dispatch(addNotebook(notebooks));
-  return notebooks;
+  dispatch(addNote(notebooks));
+  // return notebooks;
 };
 
 const initialState = { notebooks: null };

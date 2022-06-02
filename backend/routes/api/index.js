@@ -32,6 +32,7 @@ const GETnotebooks = require("./notebook/GETnotebook");
 const POSTnotebooks = require("./notebook/CREATEnotebook");
 const UPDATEnotbooks = require("./notebook/UPDATEnotebook");
 const DELETEnotebooks = require("./notebook/DELETEnotebook");
+const POSTnote = require("./note/CREATEnote");
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
@@ -39,6 +40,7 @@ router.use(GETnotebooks);
 router.use(POSTnotebooks);
 router.use(UPDATEnotbooks);
 router.use(DELETEnotebooks);
+router.use(POSTnote);
 
 router.get("/test", (req, res) => {
   res.redirect(notebooks);

@@ -11,6 +11,9 @@ function MyNotes() {
 
   //CHECK IF THE USER IS LOGGED IN
   const user = useSelector((state) => state.session.user);
+
+  //CHECK IF THE NOTE EXSITS
+
   //LOGGED IN USER CHECK
   const [view, setView] = useState(false);
   useEffect(() => {
