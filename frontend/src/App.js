@@ -10,6 +10,7 @@ import NoteBook from "./components/Main/AllNoteBooks";
 import Home from "./components/Home";
 import MyNoteBook from "./components/MyNoteBooks";
 import Sandbox from "./components/Sandbox";
+import MyNotes from "./components/MyNotes";
 // import { AllNoteBooks } from "./components/Main/AllNoteBooks";
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
       <Route path="/mynotebooks">
         <Sandbox />
         {/* <MyNoteBook /> */}
+      </Route>
+      <Route path={`/note/:noteId`}>
+        <MyNotes></MyNotes>
       </Route>
       <Route>Page Not Found</Route>
     </Switch>

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 
 // import "./LoginForm.css";
 import "./Sandbox.css";
@@ -14,6 +15,9 @@ import {
 
 function Sandbox() {
   const dispatch = useDispatch();
+  const { noteId } = useParams();
+  console.log(noteId);
+  const history = useHistory();
 
   //CHECK IF THE USER IS LOGGED IN
   const user = useSelector((state) => state.session.user);
@@ -27,12 +31,13 @@ function Sandbox() {
   const userId = user?.id;
   const [title, setTitle] = useState(false);
   const [titleName, settitleName] = useState("");
+  const [open, setOpen] = useState("false");
 
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.notebook);
 
   //SET THE CURRENT VIEW OF THE SELECTED BOX
-  const test = (e) => {
+  const theCurrentSelectedNoteBook = (e) => {
     setId(e.target.getAttribute("data-id"));
     setInputList([e.target.value]);
   };
@@ -43,7 +48,7 @@ function Sandbox() {
       className="button-7"
       value={el?.notetitle}
       data-id={el?.id}
-      onClick={test}
+      onClick={theCurrentSelectedNoteBook}
     >
       {el?.notetitle}
     </button>
@@ -95,7 +100,10 @@ function Sandbox() {
     settitleName("");
     setTitle(false);
   };
-
+  //OPEN THE NOTEBOOK
+  const opennotebook = () => {
+    history.push(`/note/${id}`);
+  };
   return (
     <>
       {!view ? (
@@ -117,6 +125,7 @@ function Sandbox() {
               <textarea value={inputList} onChange={changeValue}></textarea>
               <button onClick={updatenotebook}>Save!</button>
               <button onClick={deletenotebook}>Delete NoteBook!</button>
+              <button onClick={opennotebook}>Open Notebook!</button>
               {title ? (
                 <div>
                   <section>
