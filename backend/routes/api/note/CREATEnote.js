@@ -12,7 +12,9 @@ const db = require("../../../db/models");
 
 router.post("/profile/notebook/:id", requireAuth, async (req, res) => {
   const { titleName, titleData, noteId } = req.body;
-
+  if (titleName.length === 0) {
+    return res.json({ Error: `No Title` });
+  }
   const note = await db.Note.create({
     title: titleName,
     notedata: titleData,

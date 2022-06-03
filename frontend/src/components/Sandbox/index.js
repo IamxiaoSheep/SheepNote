@@ -92,6 +92,7 @@ function Sandbox() {
     if (titleName.length === 0) {
       return;
     }
+    console.log(`Step 1`);
     dispatch(createNotebooks(titleName, userId));
     dispatch(getAllNotebooks(id));
     settitleName("");

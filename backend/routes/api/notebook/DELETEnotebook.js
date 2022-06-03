@@ -19,7 +19,7 @@ router.delete("/profile/notebook", async (req, res) => {
   }
   const notebook = await db.NoteBook.findByPk(notebookId);
   const notes = await db.Note.findAll({ where: { notebookId } });
-  console.log(notebook, notes);
+
   if (!notebook || !notes) {
     return res.send({ length: 0 });
   }
@@ -34,13 +34,9 @@ router.delete("/profile/notebook", async (req, res) => {
     await tags.destroy();
   }
 
-  //   console.log(`Does it come out here?
-  // `);
-
   for (let i = 0; i < notes.length; i++) {
     let currentNote = notes[i];
     await currentNote.destroy();
-    console.log(currentNote, `THE CURRENT NOTE`);
   }
 
   await notebook.destroy();

@@ -12,6 +12,7 @@ const db = require("../../../db/models");
 
 router.get("/profile/notebook/:id", requireAuth, async (req, res) => {
   const noteId = req.params.id;
+
   const note = await db.Note.findAll({ where: { notebookId: noteId } });
 
   res.json(note);

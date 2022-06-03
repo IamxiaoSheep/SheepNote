@@ -27,6 +27,14 @@ const updatNote = (notes) => {
   };
 };
 
+// @TODO CREATE NOTE
+const deleteNote = (notes) => {
+  return {
+    type: DELETE_A_NOTE,
+    notes,
+  };
+};
+
 //CREATE THUNK
 export const createNote =
   (titleName, titleData, noteId) => async (dispatch) => {
@@ -36,6 +44,9 @@ export const createNote =
     });
 
     const notes = await response.json();
+    if (notes.Error) {
+      return notes.Error;
+    }
     dispatch(addNote(notes));
     return notes;
   };
@@ -45,14 +56,20 @@ export const getAllNotes = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/profile/notebook/${id}`);
   const data = await response.json();
   dispatch(getNote(data));
-  console.log(data);
+
   return response;
 };
 // DELETE THUNK
 export const deleteAllNotes = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/profile/notebook/${id}`);
+  const response = await csrfFetch(`/api/profile/notebook/${id}`, {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
   const data = await response.json();
-  dispatch(getNote(data));
+  if (data.Error) {
+    return data.Error;
+  }
+  dispatch(deleteNote(data));
 
   return response;
 };
@@ -65,6 +82,9 @@ export const saveNotes = (id, inputList, noteid) => async (dispatch) => {
   });
 
   const data = await response.json();
+  if (data.Error) {
+    return data.Error;
+  }
   dispatch(updatNote(data));
   return response;
 };
@@ -89,6 +109,7 @@ const noteReducer = (state = initialState, action) => {
       return newState;
     case DELETE_A_NOTE:
       newState = { ...state };
+      console.log(newState, `******* Line 109`);
       delete newState[action.notes];
       return newState;
     default:
