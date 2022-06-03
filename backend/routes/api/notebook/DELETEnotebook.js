@@ -13,17 +13,20 @@ const note = require("../../../db/models/note");
 
 router.delete("/profile/notebook", async (req, res) => {
   const notebookId = req.body.id;
-  console.log(notebookId, `**********`);
+
   if (notebookId === 0) {
     return res.send({ length: 0 });
   }
   const notebook = await db.NoteBook.findByPk(notebookId);
   const notes = await db.Note.findAll({ where: { notebookId } });
+  console.log(notebook, notes);
+  if (!notebook || !notes) {
+    return res.send({ length: 0 });
+  }
   const tagXnotes = await db.TagCrossNote.findAll({
     where: { noteId: notebookId },
   });
 
-  // console.log(tagXnotes, `this the cross table`);
   for (let i = 0; i < tagXnotes.length; i++) {
     let currentTXN = tagXnotes[i];
     await db.TagCrossNote.destroy({ where: { tagId: currentTXN.tagId } });

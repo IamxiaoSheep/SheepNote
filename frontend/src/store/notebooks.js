@@ -64,10 +64,10 @@ export const deleteNotebooks = (id) => async (dispatch) => {
   });
   const data = await response.json();
   if (data.length === 0) {
+    console.log(`Come here`);
     return;
   }
   dispatch(deleteNotebook(data));
-  console.log(data, ` DELETE THUNK`);
   return response;
 };
 

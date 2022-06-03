@@ -77,8 +77,8 @@ function Sandbox() {
   };
 
   //DELETEING NOTEBOOK
-  const deletenotebook = () => {
-    dispatch(deleteNotebooks(id));
+  const deletenotebook = async () => {
+    await dispatch(deleteNotebooks(id));
     setInputList([]);
   };
 
