@@ -10,16 +10,18 @@ const {
 } = require("../../../utils/auth");
 const db = require("../../../db/models");
 
-router.post("/profile/notebook/:id", requireAuth, async (req, res) => {
-  const { titleName, titleData, noteId } = req.body;
-  if (titleName.length === 0) {
+router.put("/profile/notebook/:noteId", requireAuth, async (req, res) => {
+  console.log(req.body, `****** Line 25`);
+  const noteId = req.body.noteid;
+  const noteTop = req.body.id;
+  const notebottom = req.body.inputList;
+  const note = await db.Note.findByPk(noteId);
+  if (!note) {
     return res.json({ Error: `No Title` });
   }
-  const note = await db.Note.create({
-    title: titleName,
-    notedata: titleData,
-    notebookId: noteId,
-  });
+  note.notedata = notebottom;
+  note.title = noteTop;
+  await note.save();
   res.json(note);
 });
 

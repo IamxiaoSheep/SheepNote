@@ -16,7 +16,6 @@ import {
 function Sandbox() {
   const dispatch = useDispatch();
   const { noteId } = useParams();
-  console.log(noteId);
   const history = useHistory();
 
   //CHECK IF THE USER IS LOGGED IN
@@ -56,7 +55,7 @@ function Sandbox() {
 
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
-    dispatch(getAllNotebooks());
+    dispatch(getAllNotebooks(id));
   }, [dispatch]);
 
   //CHECK THE USER EXISTENCE
@@ -72,13 +71,14 @@ function Sandbox() {
   };
 
   /// (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
-  const updatenotebook = () => {
-    dispatch(saveNotebooks(id, inputList));
+  const updatenotebook = async () => {
+    const response = await dispatch(saveNotebooks(id, inputList));
+    console.log(response);
   };
 
   //DELETEING NOTEBOOK
-  const deletenotebook = () => {
-    dispatch(deleteNotebooks(id));
+  const deletenotebook = async () => {
+    await dispatch(deleteNotebooks(id));
     setInputList([]);
   };
 
@@ -89,7 +89,13 @@ function Sandbox() {
 
   const submitTitle = (e) => {
     e.preventDefault();
+    if (titleName.length === 0) {
+      return;
+    }
+    console.log(`Step 1`);
     dispatch(createNotebooks(titleName, userId));
+    dispatch(getAllNotebooks(id));
+    settitleName("");
   };
   const titlenameHandler = (e) => {
     settitleName(e.target.value);

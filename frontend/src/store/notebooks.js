@@ -49,6 +49,9 @@ export const saveNotebooks = (id, input) => async (dispatch) => {
     body: JSON.stringify({ id, input }),
   });
   const data = await response.json();
+  if (data.length === 0) {
+    return [`No length`];
+  }
   dispatch(updateNotebook(data));
   return response;
 };
@@ -60,18 +63,23 @@ export const deleteNotebooks = (id) => async (dispatch) => {
     body: JSON.stringify({ id }),
   });
   const data = await response.json();
+  if (data.length === 0) {
+    return;
+  }
   dispatch(deleteNotebook(data));
-  console.log(data, ` DELETE THUNK`);
   return response;
 };
 
 //CREATE THUNK
 export const createNotebooks = (titleName, id) => async (dispatch) => {
+  console.log(`STEP 2`);
   const response = await csrfFetch("/api/profile/notebook", {
     method: "POST",
     body: JSON.stringify({ titleName, id }),
   });
   const notebooks = await response.json();
+  // console.log(`STEP 4`, notebooks);
+
   dispatch(addNotebook(notebooks));
   return notebooks;
 };
