@@ -80,6 +80,7 @@ function Sandbox() {
   const deletenotebook = async () => {
     await dispatch(deleteNotebooks(id));
     setInputList([]);
+    setId(0);
   };
 
   //CREATING NOTEBOOK
@@ -92,7 +93,7 @@ function Sandbox() {
     if (titleName.length === 0) {
       return;
     }
-    console.log(`Step 1`);
+
     dispatch(createNotebooks(titleName, userId));
     dispatch(getAllNotebooks(id));
     settitleName("");
@@ -108,6 +109,9 @@ function Sandbox() {
   };
   //OPEN THE NOTEBOOK
   const opennotebook = () => {
+    if (id === 0) {
+      return;
+    }
     history.push(`/note/${id}`);
   };
   return (

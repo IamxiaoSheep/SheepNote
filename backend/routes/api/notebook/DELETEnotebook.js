@@ -23,16 +23,16 @@ router.delete("/profile/notebook", async (req, res) => {
   if (!notebook || !notes) {
     return res.send({ length: 0 });
   }
-  const tagXnotes = await db.TagCrossNote.findAll({
-    where: { noteId: notebookId },
-  });
+  // const tagXnotes = await db.TagCrossNote.findAll({
+  //   where: { noteId: notebookId },
+  // });
 
-  for (let i = 0; i < tagXnotes.length; i++) {
-    let currentTXN = tagXnotes[i];
-    await db.TagCrossNote.destroy({ where: { tagId: currentTXN.tagId } });
-    const tags = await db.Tag.findByPk(currentTXN.tagId);
-    await tags.destroy();
-  }
+  // for (let i = 0; i < tagXnotes.length; i++) {
+  //   let currentTXN = tagXnotes[i];
+  //   await db.TagCrossNote.destroy({ where: { tagId: currentTXN.tagId } });
+  //   const tags = await db.Tag.findByPk(currentTXN.tagId);
+  //   await tags.destroy();
+  // }
 
   for (let i = 0; i < notes.length; i++) {
     let currentNote = notes[i];

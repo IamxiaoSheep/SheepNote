@@ -188,6 +188,8 @@ function MyNotes() {
     dispatch(deleteAllNotes(id));
     dispatch(getAllNotes(noteId));
     setInputList([]);
+    setnoteTitle("");
+    setNoteData("");
   };
 
   //CREATING NOTEBOOK
