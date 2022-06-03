@@ -129,7 +129,6 @@ function MyNotes() {
     setnoteTitle(title);
     setNoteData(data);
     setId(e.target.getAttribute("data-key"));
-
     setInputList(`${title} ${data}`);
   };
 
@@ -166,23 +165,28 @@ function MyNotes() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changetitle = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setnoteTitle(e.target.value);
   };
   const changedata = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setNoteData(e.target.value);
   };
 
   // (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
-  const updatenote = () => {
-    dispatch(saveNotes(noteTitle, noteData, noteId));
+  const updatenote = async () => {
+    await dispatch(saveNotes(noteTitle, noteData, id));
     dispatch(getAllNotes(noteId));
+
+    // dispatch(getAllNotes(noteId));
+
+    // dispatch(getAllNotes(noteId));
   };
 
   //DELETEING NOTEBOOK
   const deletenotebook = () => {
     dispatch(deleteAllNotes(id));
+    dispatch(getAllNotes(noteId));
     setInputList([]);
   };
 
@@ -194,7 +198,6 @@ function MyNotes() {
   const submitTitle = (e) => {
     e.preventDefault();
     dispatch(createNote(titleName, titleData, noteId));
-    console.log(`DOES IT COME IN HERE?`);
     settitleName("");
     settitleData("");
     setTitle(false);

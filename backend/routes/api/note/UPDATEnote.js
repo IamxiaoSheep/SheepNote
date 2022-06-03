@@ -11,15 +11,16 @@ const {
 const db = require("../../../db/models");
 
 router.put("/profile/notebook/:noteId", requireAuth, async (req, res) => {
-  const notetitle = req.body.id;
-  const notedata = req.body.inputList;
-  const id = req.body.noteid;
-  const note = await db.Note.findByPk(id);
+  console.log(req.body, `****** Line 25`);
+  const noteId = req.body.noteid;
+  const noteTop = req.body.id;
+  const notebottom = req.body.inputList;
+  const note = await db.Note.findByPk(noteId);
   if (!note) {
     return res.json({ Error: `No Title` });
   }
-  note.notedata = notedata;
-  note.title = notetitle;
+  note.notedata = notebottom;
+  note.title = noteTop;
   await note.save();
   res.json(note);
 });

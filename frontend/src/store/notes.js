@@ -5,21 +5,21 @@ const CREATE_A_NOTE = "notes/create_notebook";
 const UPDATE_A_NOTE = "notes/update_notebook";
 const DELETE_A_NOTE = "notes/delete_notebook";
 
-// READING WORKING
+// @TODO READ WORKING
 const getNote = (notes) => {
   return {
     type: GET_ALL_THE_NOTE,
     notes,
   };
 };
-// @TODO CREATE NOTE
+// @TODO ADD NOTE
 const addNote = (notes) => {
   return {
     type: CREATE_A_NOTE,
     notes,
   };
 };
-// @TODO CREATE NOTE
+// @TODO UPDATE NOTE
 const updatNote = (notes) => {
   return {
     type: UPDATE_A_NOTE,
@@ -27,7 +27,7 @@ const updatNote = (notes) => {
   };
 };
 
-// @TODO CREATE NOTE
+// @TODO DELETE NOTE
 const deleteNote = (notes) => {
   return {
     type: DELETE_A_NOTE,
@@ -48,7 +48,7 @@ export const createNote =
       return notes.Error;
     }
     dispatch(addNote(notes));
-    return notes;
+    // return notes;
   };
 
 // READ THUNK
@@ -104,12 +104,10 @@ const noteReducer = (state = initialState, action) => {
       return { ...state, [action.notes.id]: action.notes };
     case UPDATE_A_NOTE:
       newState = { ...state };
-      console.log(state, `what is this information?`, newState);
       newState[action.notes.notebookId] = action.notes;
       return newState;
     case DELETE_A_NOTE:
       newState = { ...state };
-      console.log(newState, `******* Line 109`);
       delete newState[action.notes];
       return newState;
     default:
