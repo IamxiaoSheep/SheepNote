@@ -49,6 +49,9 @@ export const saveNotebooks = (id, input) => async (dispatch) => {
     body: JSON.stringify({ id, input }),
   });
   const data = await response.json();
+  if (data.length === 0) {
+    return [`No length`];
+  }
   dispatch(updateNotebook(data));
   return response;
 };
@@ -60,6 +63,9 @@ export const deleteNotebooks = (id) => async (dispatch) => {
     body: JSON.stringify({ id }),
   });
   const data = await response.json();
+  if (data.length === 0) {
+    return;
+  }
   dispatch(deleteNotebook(data));
   console.log(data, ` DELETE THUNK`);
   return response;

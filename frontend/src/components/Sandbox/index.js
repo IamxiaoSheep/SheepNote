@@ -71,8 +71,9 @@ function Sandbox() {
   };
 
   /// (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
-  const updatenotebook = () => {
-    dispatch(saveNotebooks(id, inputList));
+  const updatenotebook = async () => {
+    const response = await dispatch(saveNotebooks(id, inputList));
+    console.log(response);
   };
 
   //DELETEING NOTEBOOK
@@ -88,8 +89,12 @@ function Sandbox() {
 
   const submitTitle = (e) => {
     e.preventDefault();
+    if (titleName.length === 0) {
+      return;
+    }
     dispatch(createNotebooks(titleName, userId));
     dispatch(getAllNotebooks(id));
+    settitleName("");
   };
   const titlenameHandler = (e) => {
     settitleName(e.target.value);

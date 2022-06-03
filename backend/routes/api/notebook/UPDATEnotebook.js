@@ -13,9 +13,19 @@ const db = require("../../../db/models");
 router.put("/profile/notebook", async (req, res) => {
   const notebookId = req.body.id;
   const newInfo = req.body.input;
+
+  if (newInfo.length === 0) {
+    return res.json({ length: 0 });
+  }
+  console.log(notebookId, `****`, newInfo, `line 20`);
   const notebook = await db.NoteBook.findByPk(notebookId);
+  if (notebook.notetitle === newInfo || newInfo instanceof Array) {
+    return res.json({ length: 0 });
+  }
   notebook.notetitle = newInfo;
+
   await notebook.save();
+
   return res.json(notebook);
 });
 

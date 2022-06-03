@@ -11,6 +11,7 @@ const {
 const db = require("../../../db/models");
 
 router.put("/profile/notebook/:noteId", requireAuth, async (req, res) => {
+  console.log(`Nah bru`);
   const notetitle = req.body.id;
   const notedata = req.body.inputList;
   const id = req.body.noteid;

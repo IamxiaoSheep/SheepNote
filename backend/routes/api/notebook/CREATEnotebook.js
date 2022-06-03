@@ -12,7 +12,9 @@ const db = require("../../../db/models");
 
 router.post("/profile/notebook", async (req, res) => {
   const { id, titleName } = req.body;
-
+  if (titleName.length === 0) {
+    return res.json({ length: 0 });
+  }
   const notebook = await db.NoteBook.create({
     userId: id,
     notetitle: titleName,

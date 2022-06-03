@@ -177,6 +177,7 @@ function MyNotes() {
   // (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
   const updatenote = () => {
     dispatch(saveNotes(noteTitle, noteData, noteId));
+    dispatch(getAllNotes(noteId));
   };
 
   //DELETEING NOTEBOOK

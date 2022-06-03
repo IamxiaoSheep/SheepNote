@@ -63,6 +63,7 @@ export const saveNotes = (id, inputList, noteid) => async (dispatch) => {
     method: "PUT",
     body: JSON.stringify({ id, inputList, noteid }),
   });
+
   const data = await response.json();
   dispatch(updatNote(data));
   return response;
@@ -80,10 +81,11 @@ const noteReducer = (state = initialState, action) => {
       });
       return newState;
     case CREATE_A_NOTE:
-      return { ...state, notes: action.notes };
+      return { ...state, [action.notes.id]: action.notes };
     case UPDATE_A_NOTE:
       newState = { ...state };
-      newState[action.notes.id] = action.notes;
+      console.log(state, `what is this information?`, newState);
+      newState[action.notes.notebookId] = action.notes;
       return newState;
     case DELETE_A_NOTE:
       newState = { ...state };
