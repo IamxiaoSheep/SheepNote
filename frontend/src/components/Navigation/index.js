@@ -1,14 +1,23 @@
 // frontend/src/components/Navigation/index.js
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import logo from "../../imgs/SheepNote-logos.jpeg";
+import * as sessionActions from "../../store/session";
 function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  let sessionLinks;
+  const logins = () => {
+    return dispatch(
+      sessionActions.login({
+        credential: "Demo-lition",
+        password: "password",
+      })
+    );
+  };
 
   return (
     <>
@@ -45,6 +54,11 @@ function Navigation({ isLoaded }) {
               </li>
               <li>
                 <NavLink to="/login">Login</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login" onClick={logins}>
+                  Demo User
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/signup">Signup</NavLink>
