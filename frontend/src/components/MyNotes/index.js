@@ -109,6 +109,7 @@ function MyNotes() {
   const [inputList, setInputList] = useState("");
   const [id, setId] = useState(0);
   const userId = user?.id;
+  console.log(`*********`, userId);
   const [title, setTitle] = useState(false);
 
   //WHEN CREATING NEW DATA

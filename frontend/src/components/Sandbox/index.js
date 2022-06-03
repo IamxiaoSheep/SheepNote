@@ -31,6 +31,7 @@ function Sandbox() {
   const [title, setTitle] = useState(false);
   const [titleName, settitleName] = useState("");
   const [open, setOpen] = useState("false");
+  const [valid, setValid] = useState(0);
 
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.notebook);
@@ -132,6 +133,7 @@ function Sandbox() {
               <button onClick={updatenotebook}>Save!</button>
               <button onClick={deletenotebook}>Delete NoteBook!</button>
               <button onClick={opennotebook}>Open Notebook!</button>
+              {/* {setValid(checkNotes?.userId)} */}
               {title ? (
                 <div>
                   <section>
