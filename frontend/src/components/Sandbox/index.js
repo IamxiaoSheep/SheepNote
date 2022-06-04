@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 
 // import "./LoginForm.css";
 import "./Sandbox.css";
@@ -114,12 +114,17 @@ function Sandbox() {
 
   const submitTitle = (e) => {
     e.preventDefault();
-    if (e.target.value === undefined) {
-      dispatch(createNotebooks("Untitled", userId));
-      dispatch(getAllNotebooks(id));
-    }
+    // console.log(titleName.length === 0, `*****`);
+    // if (e.target.value === undefined) {
+    //   dispatch(createNotebooks("Untitled", userId));
+    //   dispatch(getAllNotebooks(id));
+    // }
 
     if (titleName.length === 0) {
+      dispatch(createNotebooks("Untitled", userId));
+      dispatch(getAllNotebooks(id));
+      settitleName("");
+      setErrors([]);
       setTitle(false);
       return;
     }
@@ -168,14 +173,16 @@ function Sandbox() {
         <p>Not allowed to see this page</p>
       ) : (
         <div className="onecontainer">
-          <nav className="onemainnav">
-            <div>
-              <ul>
-                <li></li>
-              </ul>
-            </div>
-          </nav>
+          <nav className="onemainnav"></nav>
+
           <div className="onemaininfo">
+            <div>{user?.username} What's up G</div>
+            <div>
+              <NavLink to="/home">Welcome Home</NavLink>
+            </div>
+            <div>
+              <NavLink to="/mynotebooks">My Notebooks</NavLink>
+            </div>
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             <ul className="thenotes">{currentNoteBooks}</ul>
             <div className="readandedit">

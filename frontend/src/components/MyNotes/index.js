@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 
 import "./what.css";
 import {
@@ -136,6 +136,11 @@ function MyNotes() {
 
   const submitTitle = (e) => {
     e.preventDefault();
+    if (titleName.length === 0 && titleData.length === 0) {
+      dispatch(createNote("Untitled", "What's Going On Today?", noteId));
+      dispatch(getAllNotes(noteId));
+    }
+
     dispatch(createNote(titleName, titleData, noteId));
     settitleName("");
     settitleData("");
@@ -178,6 +183,13 @@ function MyNotes() {
             </div>
           </nav>
           <div className="onemaininfonote">
+            <div>{user?.username} What's up G</div>
+            <div>
+              <NavLink to="/home">Welcome Home</NavLink>
+            </div>
+            <div>
+              <NavLink to="/mynotebooks">My Notebooks</NavLink>
+            </div>
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             {/* <ul className="thenotes">{currentNoteTitle}</ul> */}
             <ul className="thenotes">
