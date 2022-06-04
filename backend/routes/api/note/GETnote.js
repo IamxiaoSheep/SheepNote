@@ -12,6 +12,10 @@ const db = require("../../../db/models");
 
 router.get("/profile/notebook/:id", requireAuth, async (req, res) => {
   const noteId = req.params.id;
+  const notebook = await db.NoteBook.findByPk(noteId);
+  if (notebook === null) {
+    return res.json({ Error: `wtf mate it doesn't exist` });
+  }
   const note = await db.Note.findAll({ where: { notebookId: noteId } });
 
   res.json(note);

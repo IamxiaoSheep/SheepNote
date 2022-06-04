@@ -43,6 +43,9 @@ function Sandbox() {
 
   //SET THE CURRENT VIEW OF THE SELECTED BOX
   const theCurrentSelectedNoteBook = (e) => {
+    setTitle(false);
+    settitleName("");
+    setErrors([]);
     if (e.target.value.length !== 0) {
       setInputView(true);
     }
@@ -78,10 +81,11 @@ function Sandbox() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changeValue = (e) => {
+    console.log(e.target.value.length);
     const error = [];
     setErrors([]);
 
-    if (e.target.value.length === 10) {
+    if (e.target.value.length === 50) {
       error.push("Character Limit Reached");
       return setErrors(error);
     }
@@ -103,28 +107,31 @@ function Sandbox() {
 
   //CREATING NOTEBOOK
   const createnotebook = () => {
+    setErrors([]);
     setTitle(true);
   };
 
   const submitTitle = (e) => {
     e.preventDefault();
     if (titleName.length === 0) {
+      setTitle(false);
       return;
     }
 
     dispatch(createNotebooks(titleName, userId));
     dispatch(getAllNotebooks(id));
     settitleName("");
+    setErrors([]);
   };
   const titlenameHandler = (e) => {
     const error = [];
     setErrors([]);
 
-    if (e.target.value.length === 10) {
+    if (e.target.value.length === 50) {
       error.push("Character Limit Reached");
       return setErrors(error);
     }
-    setErrors([]);
+    // setErrors([]);
     settitleName(e.target.value);
   };
 

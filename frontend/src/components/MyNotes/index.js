@@ -79,7 +79,16 @@ function MyNotes() {
   ));
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
-    dispatch(getAllNotes(noteId));
+    let s = dispatch(getAllNotes(noteId)).then((r) => {
+      if (r.Error) {
+        setView(false);
+      }
+    });
+    console.log(s);
+    // if (s === undefined) {
+    //   console.log(`thats a lto of daamge`);
+    //   setView(false);
+    // }
   }, [dispatch]);
 
   //CHECK THE USER EXISTENCE
@@ -157,7 +166,7 @@ function MyNotes() {
   return (
     <>
       {!view ? (
-        <p>Not allowed to see this page</p>
+        <p>Sorry Mate Page Doesn't Exist</p>
       ) : (
         <div className="onecontainer">
           <nav className="onemainnav">

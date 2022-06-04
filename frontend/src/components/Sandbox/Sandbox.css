@@ -1,3 +1,7 @@
+body {
+  overflow: scroll;
+}
+
 .onecontainer {
   -webkit-box-flex: 1;
   display: -webkit-box;
@@ -5,7 +9,7 @@
   display: flex;
   -ms-flex: 1;
   flex: 1;
-  overflow: hidden;
+  overflow: scroll;
   /* width: 1632px;
   height: 100vh; */
 }
@@ -58,7 +62,8 @@
   touch-action: manipulation;
   vertical-align: baseline;
   white-space: nowrap;
-  width: 20rem;
+  width: 25rem;
+  height: 5rem;
   text-overflow: clip;
 }
 
