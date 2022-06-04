@@ -80,11 +80,12 @@ function MyNotes() {
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
     let s = dispatch(getAllNotes(noteId)).then((r) => {
+      console.log(r, `is it here?`);
       if (r.Error) {
         setView(false);
       }
     });
-    console.log(s);
+    console.log(s, `00203020`);
     // if (s === undefined) {
     //   console.log(`thats a lto of daamge`);
     //   setView(false);

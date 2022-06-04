@@ -103,6 +103,7 @@ function Sandbox() {
     await dispatch(deleteNotebooks(id));
     setInputList([]);
     setId(0);
+    setInputView(false);
   };
 
   //CREATING NOTEBOOK
@@ -113,6 +114,11 @@ function Sandbox() {
 
   const submitTitle = (e) => {
     e.preventDefault();
+    if (e.target.value === undefined) {
+      dispatch(createNotebooks("Untitled", userId));
+      dispatch(getAllNotebooks(id));
+    }
+
     if (titleName.length === 0) {
       setTitle(false);
       return;
@@ -124,6 +130,7 @@ function Sandbox() {
     setErrors([]);
   };
   const titlenameHandler = (e) => {
+    console.log(e.target.value.length, `****`);
     const error = [];
     setErrors([]);
 
