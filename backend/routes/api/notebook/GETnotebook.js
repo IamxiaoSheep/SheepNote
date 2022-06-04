@@ -18,6 +18,7 @@ router.get(
     const notebooks = await db.NoteBook.findAll({
       where: { userId },
     });
+
     res.json(notebooks);
   })
 );

@@ -15,6 +15,10 @@ router.post("/profile/notebook/:id", requireAuth, async (req, res) => {
   if (titleName.length === 0) {
     return res.json({ Error: `No Title` });
   }
+  const findNote = await db.NoteBook.findByPk(noteId);
+  if (findNote === null) {
+    return false;
+  }
   const note = await db.Note.create({
     title: titleName,
     notedata: titleData,

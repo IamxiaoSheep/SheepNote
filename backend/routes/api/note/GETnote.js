@@ -10,11 +10,25 @@ const {
 } = require("../../../utils/auth");
 const db = require("../../../db/models");
 
-router.get("/profile/notebook/:id", requireAuth, async (req, res) => {
-  const noteId = req.params.id;
-  const note = await db.Note.findAll({ where: { notebookId: noteId } });
+router.get(
+  "/profile/notebook/:id",
+  restoreUser,
+  requireAuth,
+  async (req, res) => {
+    const noteId = req.params.id;
+    const notebook = await db.NoteBook.findByPk(noteId);
+    // console.log(notebook, `***** what is this`);
+    if (notebook === null) {
+      return res.json({ Error: `wtf mate it doesn't exist` });
+    }
+    if (notebook.userId === null || notebook.userId !== req.user.id) {
+      return res.json({ Error: "Nah Mate" });
+    }
 
-  res.json(note);
-});
+    const note = await db.Note.findAll({ where: { notebookId: noteId } });
+
+    res.json(note);
+  }
+);
 
 module.exports = router;

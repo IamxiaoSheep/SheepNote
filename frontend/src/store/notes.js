@@ -55,6 +55,10 @@ export const createNote =
 export const getAllNotes = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/profile/notebook/${id}`);
   const data = await response.json();
+  if (data.Error) {
+    console.log(data, `00000`);
+    return data;
+  }
   dispatch(getNote(data));
 
   return response;

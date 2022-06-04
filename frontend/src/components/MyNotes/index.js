@@ -1,89 +1,7 @@
-// import { useParams } from "react-router-dom";
-// import React, { useEffect, useState } from "react";
-
-// import { useDispatch, useSelector } from "react-redux";
-
-// import { createNote, getAllNotes } from "../../store/notes";
-
-// function MyNotes() {
-//   const { noteId } = useParams();
-//   const dispatch = useDispatch();
-
-//   //CHECK IF THE USER IS LOGGED IN
-//   const user = useSelector((state) => state.session.user);
-
-//   //THIS IS WHERE THE ARRAY FOR THE VIEW IS
-//   const [inputList, setInputList] = useState([]);
-//   const [id, setId] = useState(0);
-//   const userId = user?.id;
-//   const [title, setTitle] = useState(false);
-//   const [titleName, settitleName] = useState("");
-//   const [open, setOpen] = useState("false");
-//   const [notedata, setNoteData] = useState("");
-//   //CHECK IF THE NOTE EXSITS
-
-//   //LOGGED IN USER CHECK
-//   const [view, setView] = useState(false);
-//   useEffect(() => {
-//     if (user) {
-//       setView(true);
-//     }
-//   }, [user]);
-
-//   //SET THE CURRENT VIEW OF THE SELECTED BOX
-//   const theCurrentSelectedNoteBook = (e) => {
-//     setId(e.target.getAttribute("data-id"));
-//     setInputList([e.target.value]);
-//   };
-//   //NOTEDATA HANDLER
-//   const notedataHandler = (e) => {
-//     setNoteData(e.target.value);
-//   };
-//   ///HOW WE READ FROM THE STORE
-//   const checkNotes = useSelector((state) => state.note);
-
-//   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
-//   useEffect(() => {
-//     dispatch(getAllNotes(noteId));
-//   }, [dispatch]);
-//   /// READ THE VALUES OF THE CURRENT USER DATABASE
-//   const currentNotes = Object.values(checkNotes).map((el) => (
-//     <textarea
-//       // className="button-7"
-//       type="text"
-//       value={el?.notedata}
-//       data-id={el?.id}
-//       onClick={theCurrentSelectedNoteBook}
-//       onChange={notedataHandler}
-//     >
-//       {el?.notedata}
-//     </textarea>
-//   ));
-//   //CREATING A NOTE
-//   const createanote = () => {
-//     dispatch(createNote(noteId));
-//   };
-//   return (
-//     <>
-//       {!view ? (
-//         <p>Not allowed to see this page</p>
-//       ) : (
-//         <>
-//           <p>Here</p>
-//           {currentNotes}
-//           <textarea></textarea>
-//           <button onClick={createanote}>Create A Note!</button>
-//         </>
-//       )}
-//     </>
-//   );
-// }
-// export default MyNotes;
-// frontend/src/components/LoginFormPage/index.js
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 
 import "./what.css";
 import {
@@ -111,6 +29,8 @@ function MyNotes() {
   const userId = user?.id;
   const [title, setTitle] = useState(false);
 
+  //THIS IS WHEN TO RENDER THE EDIT BOXES
+  const [inputView, setInputView] = useState(false);
   //WHEN CREATING NEW DATA
   const [titleName, settitleName] = useState("");
   const [titleData, settitleData] = useState("");
@@ -124,6 +44,12 @@ function MyNotes() {
 
   //SET THE CURRENT VIEW OF THE SELECTED BOX
   const theCurrentSelectedNoteBook = (e) => {
+    // if (e.target.value.length !== 0) {
+    //   setInputView(true);
+    // }
+    if (!e.target.value) {
+      setInputView(true);
+    }
     let title = e.target.getAttribute("data-id");
     let data = e.target.getAttribute("data-note");
     setnoteTitle(title);
@@ -153,7 +79,17 @@ function MyNotes() {
   ));
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
-    dispatch(getAllNotes(noteId));
+    let s = dispatch(getAllNotes(noteId)).then((r) => {
+      console.log(r, `is it here?`);
+      if (r.Error) {
+        setView(false);
+      }
+    });
+    console.log(s, `00203020`);
+    // if (s === undefined) {
+    //   console.log(`thats a lto of daamge`);
+    //   setView(false);
+    // }
   }, [dispatch]);
 
   //CHECK THE USER EXISTENCE
@@ -165,11 +101,11 @@ function MyNotes() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changetitle = (e) => {
-    // console.log(e.target.value);
+    // console.log(e.target.value, `TOP`);
     setnoteTitle(e.target.value);
   };
   const changedata = (e) => {
-    // console.log(e.target.value);
+    // console.log(e.target.value, `BOTTOM`);
     setNoteData(e.target.value);
   };
 
@@ -177,6 +113,7 @@ function MyNotes() {
   const updatenote = async () => {
     await dispatch(saveNotes(noteTitle, noteData, id));
     dispatch(getAllNotes(noteId));
+    setInputView(false);
 
     // dispatch(getAllNotes(noteId));
 
@@ -199,6 +136,11 @@ function MyNotes() {
 
   const submitTitle = (e) => {
     e.preventDefault();
+    if (titleName.length === 0 && titleData.length === 0) {
+      dispatch(createNote("Untitled", "What's Going On Today?", noteId));
+      dispatch(getAllNotes(noteId));
+    }
+
     dispatch(createNote(titleName, titleData, noteId));
     settitleName("");
     settitleData("");
@@ -221,10 +163,16 @@ function MyNotes() {
   const opennotebook = () => {
     history.push(`/note/${id}`);
   };
+
+  //EDITING THE FORM
+
+  const cancelEdit = () => {
+    setInputView(false);
+  };
   return (
     <>
       {!view ? (
-        <p>Not allowed to see this page</p>
+        <p>Sorry Mate Page Doesn't Exist</p>
       ) : (
         <div className="onecontainer">
           <nav className="onemainnav">
@@ -235,6 +183,13 @@ function MyNotes() {
             </div>
           </nav>
           <div className="onemaininfonote">
+            <div>{user?.username} What's up G</div>
+            <div>
+              <NavLink to="/home">Welcome Home</NavLink>
+            </div>
+            <div>
+              <NavLink to="/mynotebooks">My Notebooks</NavLink>
+            </div>
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             {/* <ul className="thenotes">{currentNoteTitle}</ul> */}
             <ul className="thenotes">
@@ -243,10 +198,24 @@ function MyNotes() {
             </ul>
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
-              <textarea value={noteTitle} onChange={changetitle}></textarea>
-              <textarea value={noteData} onChange={changedata}></textarea>
-              <button onClick={updatenote}>Save!</button>
-              <button onClick={deletenotebook}>Delete NoteBook!</button>
+
+              {inputView ? (
+                <>
+                  <textarea value={noteTitle} onChange={changetitle}></textarea>
+                  <textarea value={noteData} onChange={changedata}></textarea>
+                  <button onClick={updatenote}>Save!</button>
+                  <button onClick={cancelEdit}>Cancel!</button>
+                  <button onClick={deletenotebook}>Delete NoteBook!</button>
+                </>
+              ) : (
+                <>
+                  {title ? (
+                    <></>
+                  ) : (
+                    <button onClick={createnote}>Create A Note!</button>
+                  )}
+                </>
+              )}
 
               {title ? (
                 <>
@@ -278,7 +247,7 @@ function MyNotes() {
                   </div>
                 </>
               ) : (
-                <button onClick={createnote}>Create A Note!</button>
+                <></>
               )}
             </div>
           </div>

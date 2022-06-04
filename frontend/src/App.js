@@ -41,7 +41,6 @@ function App() {
       </Route>
       <Route path="/mynotebooks">
         <Sandbox />
-        {/* <MyNoteBook /> */}
       </Route>
       <Route path={`/note/:noteId`}>
         <MyNotes></MyNotes>

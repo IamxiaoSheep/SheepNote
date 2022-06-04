@@ -1,3 +1,7 @@
+body {
+  overflow: scroll;
+}
+
 .onecontainer {
   -webkit-box-flex: 1;
   display: -webkit-box;
@@ -5,7 +9,7 @@
   display: flex;
   -ms-flex: 1;
   flex: 1;
-  overflow: hidden;
+  overflow: scroll;
   /* width: 1632px;
   height: 100vh; */
 }
@@ -58,7 +62,9 @@
   touch-action: manipulation;
   vertical-align: baseline;
   white-space: nowrap;
-  width: 20rem;
+  width: 25rem;
+  height: 5rem;
+  text-overflow: clip;
 }
 
 .button-7:hover,
@@ -73,4 +79,48 @@
 .button-7:active {
   background-color: #0064bd;
   box-shadow: none;
+}
+
+.arrow {
+  display: block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: bold 14px/100% "Trebuchet MS", Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  padding: 0.4em 1em 0.5em 1em;
+  margin: 10px 0;
+  background: #3b88d8;
+  background: -moz-linear-gradient(0% 100% 90deg, #377ad0, #52a8e8);
+  background: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(#52a8e8),
+    to(#377ad0)
+  );
+  border-top: 1px solid #4081af;
+  border-right: 1px solid #2e69a3;
+  border-bottom: 1px solid #20559a;
+  border-left: 1px solid #2e69a3;
+  -moz-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  -webkit-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  color: #fff;
+  text-shadow: 0 -1px 1px #3275bc;
+  -webkit-background-clip: padding-box;
+}
+
+.textarea {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+.textarea {
+  padding: 10px;
+  max-width: 100%;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
 }
