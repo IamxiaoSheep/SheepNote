@@ -32,11 +32,16 @@ function Sandbox() {
   const [titleName, settitleName] = useState("");
   const [open, setOpen] = useState("false");
 
+  //TEXTBOXZ SOW
+  const [inputView, setInputView] = useState(false);
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.notebook);
 
   //SET THE CURRENT VIEW OF THE SELECTED BOX
   const theCurrentSelectedNoteBook = (e) => {
+    if (e.target.value.length !== 0) {
+      setInputView(true);
+    }
     setId(e.target.getAttribute("data-id"));
     setInputList([e.target.value]);
   };
@@ -56,7 +61,7 @@ function Sandbox() {
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
     dispatch(getAllNotebooks(id));
-  }, [dispatch]);
+  }, [dispatch, setInputView]);
 
   //CHECK THE USER EXISTENCE
   useEffect(() => {
@@ -114,6 +119,12 @@ function Sandbox() {
     }
     history.push(`/note/${id}`);
   };
+
+  ///WHAT IS THE VALUE
+  const whatisthevalue = (e) => {
+    console.log(inputList);
+  };
+
   return (
     <>
       {!view ? (
@@ -132,10 +143,18 @@ function Sandbox() {
             <ul className="thenotes">{currentNoteBooks}</ul>
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
-              <textarea value={inputList} onChange={changeValue}></textarea>
-              <button onClick={updatenotebook}>Save!</button>
-              <button onClick={deletenotebook}>Delete NoteBook!</button>
-              <button onClick={opennotebook}>Open Notebook!</button>
+              {inputView ? (
+                <>
+                  <textarea value={inputList} onChange={changeValue}></textarea>
+                  <button onClick={updatenotebook}>Save!</button>
+                  <button onClick={deletenotebook}>Delete NoteBook!</button>
+                  <button onClick={opennotebook}>Open Notebook!</button>
+                </>
+              ) : (
+                <></>
+              )}
+
+              {/* <button onClick={updatenotebook}>Save!</button> */}
               {title ? (
                 <div>
                   <section>

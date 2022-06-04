@@ -111,6 +111,8 @@ function MyNotes() {
   const userId = user?.id;
   const [title, setTitle] = useState(false);
 
+  //THIS IS WHEN TO RENDER THE EDIT BOXES
+  const [inputView, setInputView] = useState(false);
   //WHEN CREATING NEW DATA
   const [titleName, settitleName] = useState("");
   const [titleData, settitleData] = useState("");
@@ -124,6 +126,12 @@ function MyNotes() {
 
   //SET THE CURRENT VIEW OF THE SELECTED BOX
   const theCurrentSelectedNoteBook = (e) => {
+    // if (e.target.value.length !== 0) {
+    //   setInputView(true);
+    // }
+    if (!e.target.value) {
+      setInputView(true);
+    }
     let title = e.target.getAttribute("data-id");
     let data = e.target.getAttribute("data-note");
     setnoteTitle(title);
@@ -165,11 +173,11 @@ function MyNotes() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changetitle = (e) => {
-    // console.log(e.target.value);
+    // console.log(e.target.value, `TOP`);
     setnoteTitle(e.target.value);
   };
   const changedata = (e) => {
-    // console.log(e.target.value);
+    // console.log(e.target.value, `BOTTOM`);
     setNoteData(e.target.value);
   };
 
@@ -221,6 +229,9 @@ function MyNotes() {
   const opennotebook = () => {
     history.push(`/note/${id}`);
   };
+
+  //EDITING THE FORM
+
   return (
     <>
       {!view ? (
@@ -243,10 +254,17 @@ function MyNotes() {
             </ul>
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
-              <textarea value={noteTitle} onChange={changetitle}></textarea>
-              <textarea value={noteData} onChange={changedata}></textarea>
-              <button onClick={updatenote}>Save!</button>
-              <button onClick={deletenotebook}>Delete NoteBook!</button>
+
+              {inputView ? (
+                <>
+                  <textarea value={noteTitle} onChange={changetitle}></textarea>
+                  <textarea value={noteData} onChange={changedata}></textarea>
+                  <button onClick={updatenote}>Save!</button>
+                  <button onClick={deletenotebook}>Delete NoteBook!</button>
+                </>
+              ) : (
+                <></>
+              )}
 
               {title ? (
                 <>
