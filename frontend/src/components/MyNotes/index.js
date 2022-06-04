@@ -1,85 +1,3 @@
-// import { useParams } from "react-router-dom";
-// import React, { useEffect, useState } from "react";
-
-// import { useDispatch, useSelector } from "react-redux";
-
-// import { createNote, getAllNotes } from "../../store/notes";
-
-// function MyNotes() {
-//   const { noteId } = useParams();
-//   const dispatch = useDispatch();
-
-//   //CHECK IF THE USER IS LOGGED IN
-//   const user = useSelector((state) => state.session.user);
-
-//   //THIS IS WHERE THE ARRAY FOR THE VIEW IS
-//   const [inputList, setInputList] = useState([]);
-//   const [id, setId] = useState(0);
-//   const userId = user?.id;
-//   const [title, setTitle] = useState(false);
-//   const [titleName, settitleName] = useState("");
-//   const [open, setOpen] = useState("false");
-//   const [notedata, setNoteData] = useState("");
-//   //CHECK IF THE NOTE EXSITS
-
-//   //LOGGED IN USER CHECK
-//   const [view, setView] = useState(false);
-//   useEffect(() => {
-//     if (user) {
-//       setView(true);
-//     }
-//   }, [user]);
-
-//   //SET THE CURRENT VIEW OF THE SELECTED BOX
-//   const theCurrentSelectedNoteBook = (e) => {
-//     setId(e.target.getAttribute("data-id"));
-//     setInputList([e.target.value]);
-//   };
-//   //NOTEDATA HANDLER
-//   const notedataHandler = (e) => {
-//     setNoteData(e.target.value);
-//   };
-//   ///HOW WE READ FROM THE STORE
-//   const checkNotes = useSelector((state) => state.note);
-
-//   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
-//   useEffect(() => {
-//     dispatch(getAllNotes(noteId));
-//   }, [dispatch]);
-//   /// READ THE VALUES OF THE CURRENT USER DATABASE
-//   const currentNotes = Object.values(checkNotes).map((el) => (
-//     <textarea
-//       // className="button-7"
-//       type="text"
-//       value={el?.notedata}
-//       data-id={el?.id}
-//       onClick={theCurrentSelectedNoteBook}
-//       onChange={notedataHandler}
-//     >
-//       {el?.notedata}
-//     </textarea>
-//   ));
-//   //CREATING A NOTE
-//   const createanote = () => {
-//     dispatch(createNote(noteId));
-//   };
-//   return (
-//     <>
-//       {!view ? (
-//         <p>Not allowed to see this page</p>
-//       ) : (
-//         <>
-//           <p>Here</p>
-//           {currentNotes}
-//           <textarea></textarea>
-//           <button onClick={createanote}>Create A Note!</button>
-//         </>
-//       )}
-//     </>
-//   );
-// }
-// export default MyNotes;
-// frontend/src/components/LoginFormPage/index.js
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -185,6 +103,7 @@ function MyNotes() {
   const updatenote = async () => {
     await dispatch(saveNotes(noteTitle, noteData, id));
     dispatch(getAllNotes(noteId));
+    setInputView(false);
 
     // dispatch(getAllNotes(noteId));
 
@@ -232,6 +151,9 @@ function MyNotes() {
 
   //EDITING THE FORM
 
+  const cancelEdit = () => {
+    setInputView(false);
+  };
   return (
     <>
       {!view ? (
@@ -260,10 +182,17 @@ function MyNotes() {
                   <textarea value={noteTitle} onChange={changetitle}></textarea>
                   <textarea value={noteData} onChange={changedata}></textarea>
                   <button onClick={updatenote}>Save!</button>
+                  <button onClick={cancelEdit}>Cancel!</button>
                   <button onClick={deletenotebook}>Delete NoteBook!</button>
                 </>
               ) : (
-                <></>
+                <>
+                  {title ? (
+                    <></>
+                  ) : (
+                    <button onClick={createnote}>Create A Note!</button>
+                  )}
+                </>
               )}
 
               {title ? (
@@ -296,7 +225,7 @@ function MyNotes() {
                   </div>
                 </>
               ) : (
-                <button onClick={createnote}>Create A Note!</button>
+                <></>
               )}
             </div>
           </div>

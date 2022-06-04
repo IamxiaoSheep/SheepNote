@@ -32,6 +32,10 @@ function Sandbox() {
   const [titleName, settitleName] = useState("");
   const [open, setOpen] = useState("false");
 
+  //ERRORS
+
+  const [errors, setErrors] = useState([]);
+
   //TEXTBOXZ SOW
   const [inputView, setInputView] = useState(false);
   ///HOW WE READ FROM THE STORE
@@ -42,6 +46,7 @@ function Sandbox() {
     if (e.target.value.length !== 0) {
       setInputView(true);
     }
+
     setId(e.target.getAttribute("data-id"));
     setInputList([e.target.value]);
   };
@@ -50,6 +55,7 @@ function Sandbox() {
   const currentNoteBooks = Object.values(checkNotes).map((el) => (
     <button
       className="button-7"
+      // className="textarea"
       value={el?.notetitle}
       data-id={el?.id}
       onClick={theCurrentSelectedNoteBook}
@@ -61,7 +67,7 @@ function Sandbox() {
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
     dispatch(getAllNotebooks(id));
-  }, [dispatch, setInputView]);
+  }, [dispatch, setInputView, setErrors]);
 
   //CHECK THE USER EXISTENCE
   useEffect(() => {
@@ -72,13 +78,20 @@ function Sandbox() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changeValue = (e) => {
+    const error = [];
+    setErrors([]);
+
+    if (e.target.value.length === 10) {
+      error.push("Character Limit Reached");
+      return setErrors(error);
+    }
     setInputList(e.target.value);
   };
 
   /// (UPDATE THUNK) SAVING THE NEW NOTE THE UPDATE THE CRUD THUNK
   const updatenotebook = async () => {
-    const response = await dispatch(saveNotebooks(id, inputList));
-    console.log(response);
+    await dispatch(saveNotebooks(id, inputList));
+    setInputView(false);
   };
 
   //DELETEING NOTEBOOK
@@ -104,6 +117,14 @@ function Sandbox() {
     settitleName("");
   };
   const titlenameHandler = (e) => {
+    const error = [];
+    setErrors([]);
+
+    if (e.target.value.length === 10) {
+      error.push("Character Limit Reached");
+      return setErrors(error);
+    }
+    setErrors([]);
     settitleName(e.target.value);
   };
 
@@ -121,8 +142,10 @@ function Sandbox() {
   };
 
   ///WHAT IS THE VALUE
-  const whatisthevalue = (e) => {
-    console.log(inputList);
+
+  const closearea = () => {
+    setErrors([]);
+    setInputView(false);
   };
 
   return (
@@ -145,33 +168,53 @@ function Sandbox() {
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
               {inputView ? (
                 <>
-                  <textarea value={inputList} onChange={changeValue}></textarea>
+                  {errors.length > 0 ? errors : <></>}
+                  <textarea
+                    className="textarea"
+                    value={inputList}
+                    onChange={changeValue}
+                  ></textarea>
                   <button onClick={updatenotebook}>Save!</button>
-                  <button onClick={deletenotebook}>Delete NoteBook!</button>
-                  <button onClick={opennotebook}>Open Notebook!</button>
+                  <button className="arrow" onClick={deletenotebook}>
+                    Delete NoteBook!
+                  </button>
+                  <button className="arrow" onClick={opennotebook}>
+                    Open Notebook!
+                  </button>
+                  <button onClick={closearea}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  {title ? (
+                    <></>
+                  ) : (
+                    <button className="arrow" onClick={createnotebook}>
+                      Create A NoteBook!
+                    </button>
+                  )}
+                </>
+              )}
+              {title ? (
+                <>
+                  {errors.length > 0 ? errors : <></>}
+                  <div>
+                    <section>
+                      <form onSubmit={submitTitle}>
+                        <input
+                          type="text"
+                          value={titleName}
+                          onChange={titlenameHandler}
+                          placeholder="Title"
+                          className="textarea"
+                        ></input>
+                        <button type="submit">Confirm!</button>
+                        <button onClick={cancelClick}>Cancel!</button>
+                      </form>
+                    </section>
+                  </div>
                 </>
               ) : (
                 <></>
-              )}
-
-              {/* <button onClick={updatenotebook}>Save!</button> */}
-              {title ? (
-                <div>
-                  <section>
-                    <form onSubmit={submitTitle}>
-                      <input
-                        type="text"
-                        value={titleName}
-                        onChange={titlenameHandler}
-                        placeholder="Title"
-                      ></input>
-                      <button type="submit">Confirm!</button>
-                      <button onClick={cancelClick}>Cancel!</button>
-                    </form>
-                  </section>
-                </div>
-              ) : (
-                <button onClick={createnotebook}>Create A NoteBook!</button>
               )}
             </div>
           </div>
