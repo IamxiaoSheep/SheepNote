@@ -99,8 +99,89 @@ a:hover {
 }
 
 .gif {
-  margin-top: 3rem;
-  height: 20rem;
-  width: 35rem;
-  margin-left: -0.1rem;
+  /* margin-top: 3rem; */
+  height: 30rem;
+  width: 40rem;
+  margin-left: 35rem;
+  bottom: 5rem;
+}
+
+.sheepanimation {
+  position: relative;
+  width: 160px;
+  height: 340px;
+  margin-top: 150px;
+  background: rgba(0, 0, 0, 0);
+  transform: rotate(-30deg) skew(25deg) scale(0.8);
+  transition: 0.5s;
+  margin-left: 12rem;
+  top: 1rem;
+}
+.sheepanimation img {
+  position: absolute;
+  width: 100%;
+  transition: 0.5s;
+}
+.sheepanimation:hover img:nth-child(4) {
+  transform: translate(160px, -160px);
+  opacity: 1;
+}
+.sheepanimation:hover img:nth-child(3) {
+  transform: translate(120px, -120px);
+  opacity: 0.8;
+}
+.sheepanimation:hover img:nth-child(2) {
+  transform: translate(80px, -80px);
+  opacity: 0.6;
+}
+.sheepanimation:hover img:nth-child(1) {
+  transform: translate(40px, -40px);
+  opacity: 0.4;
+}
+
+.content {
+  position: relative;
+  /* background-color: red; */
+  left: 6rem;
+  bottom: 5rem;
+}
+.sheepanimatione {
+  position: relative;
+  width: 160px;
+  height: 340px;
+  margin-top: 150px;
+  background: rgba(0, 0, 0, 0);
+  transform: rotate(-30deg) skew(25deg) scale(0.8);
+  transition: 0.5s;
+  margin-left: 20rem;
+  /* top: 100rem; */
+  z-index: 1;
+}
+.sheepanimatione img {
+  position: absolute;
+  width: 100%;
+  transition: 0.5s;
+}
+.sheepanimatione:hover img:nth-child(4) {
+  transform: translate(160px, -160px);
+  opacity: 1;
+}
+.sheepanimation2:hover img:nth-child(3) {
+  transform: translate(120px, -120px);
+  opacity: 0.8;
+}
+.sheepanimatione:hover img:nth-child(2) {
+  transform: translate(80px, -80px);
+  opacity: 0.6;
+}
+.sheepanimatione:hover img:nth-child(1) {
+  transform: translate(40px, -40px);
+  opacity: 0.4;
+}
+
+.content {
+  position: relative;
+  /* background-color: red; */
+  left: 6rem;
+  top: 1rem;
 }

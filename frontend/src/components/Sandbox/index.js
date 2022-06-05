@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
-
+import logo from "../../imgs/SheepNote-logos.jpeg";
 // import "./LoginForm.css";
 import "./Sandbox.css";
 import {
@@ -176,12 +176,19 @@ function Sandbox() {
           <nav className="onemainnav"></nav>
 
           <div className="onemaininfo">
-            <div>{user?.username} What's up G</div>
-            <div>
-              <NavLink to="/home">Welcome Home</NavLink>
-            </div>
-            <div>
-              <NavLink to="/mynotebooks">My Notebooks</NavLink>
+            <div className="allthelinks">
+              <div className="name">Welcome, {user?.username}!</div>
+              <img className="namelogo" src={logo} />
+              <div>
+                <NavLink className="toHome" to="/home">
+                  Home
+                </NavLink>
+              </div>
+              <div>
+                <NavLink className="toNotebooks" to="/mynotebooks">
+                  My Notebooks
+                </NavLink>
+              </div>
             </div>
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             <ul className="thenotes">{currentNoteBooks}</ul>

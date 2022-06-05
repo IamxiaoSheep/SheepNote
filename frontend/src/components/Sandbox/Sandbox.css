@@ -13,6 +13,10 @@ body {
   /* width: 1632px;
   height: 100vh; */
 }
+
+.onecontainer::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 .onemainnav {
   width: 320px;
   height: 100vh;
@@ -123,4 +127,62 @@ body {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px #999;
+}
+
+.allthelinks {
+  position: relative;
+  /* background-color: red; */
+  right: 18rem;
+}
+
+.name {
+  position: relative;
+  top: 5rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 4rem;
+}
+
+.namelogo {
+  position: absolute;
+  top: 5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: white;
+  display: inline-block;
+  left: -2rem;
+}
+
+.toHome {
+  /* all: unset; */
+  position: relative;
+  top: 10rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 1rem;
+}
+.toHome:hover {
+  color: white;
+  font-size: 150%;
+}
+
+.toNotebooks {
+  position: relative;
+  top: 10rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 1rem;
+}
+
+.toNotebooks:hover {
+  position: relative;
+  top: 10rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 3rem;
+  font-size: 150%;
 }
