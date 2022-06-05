@@ -1,22 +1,20 @@
-body {
-  /* overflow: scroll; */
-}
-
 .onecontainer {
-  -webkit-box-flex: 1;
+  margin: 0;
+  padding: 0;
+  /* -webkit-box-flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex: 1;
-  flex: 1;
-  overflow: scroll;
+  flex: 1; */
+  /* overflow: scroll; */
   /* width: 1632px;
   height: 100vh; */
 }
-
+/* 
 .onecontainer::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
-}
+
 .onemainnav {
   width: 320px;
   height: 100vh;
@@ -130,9 +128,6 @@ body {
 }
 
 .allthelinks {
-  position: relative;
-  /* background-color: red; */
-  right: 18rem;
 }
 
 .name {
@@ -141,7 +136,7 @@ body {
   /* background-color: red; */
   display: inline-block;
   color: white;
-  left: 4rem;
+  left: 2rem;
 }
 
 .namelogo {
@@ -185,4 +180,109 @@ body {
   color: white;
   left: 3rem;
   font-size: 150%;
+}
+
+.sheepanimationtwo {
+  /* position: relative; */
+  width: 160px;
+  height: 340px;
+  margin-top: 150px;
+  background: rgba(0, 0, 0, 0);
+  transform: rotate(-30deg) skew(25deg) scale(0.8);
+  transition: 0.5s;
+  margin-left: 12rem;
+  top: 10rem;
+  right: 5rem;
+}
+.sheepanimationtwo img {
+  position: absolute;
+  width: 100%;
+  transition: 0.5s;
+}
+.sheepanimationtwo:hover img:nth-child(4) {
+  transform: translate(160px, -160px);
+  opacity: 1;
+}
+.sheepanimationtwo:hover img:nth-child(3) {
+  transform: translate(120px, -120px);
+  opacity: 0.8;
+}
+.sheepanimationtwo:hover img:nth-child(2) {
+  transform: translate(80px, -80px);
+  opacity: 0.6;
+}
+.sheepanimationtwo:hover img:nth-child(1) {
+  transform: translate(40px, -40px);
+  opacity: 0.4;
+}
+
+.containerfornotes ul {
+  /* display: inline-flex;
+  position: absolute;
+  bottom: 1rem; */
+}
+
+.readandedit {
+  /* position: absolute;
+  bottom: 1rem;
+  left: 50rem; */
+}
+
+.root {
+  all: unset;
+}
+
+.onecontainer {
+  all: unset;
+  display: inline-flex;
+}
+
+.onemainnav {
+  display: inline-block;
+  height: 100vh;
+}
+
+.onemaininfo {
+  display: inline-block;
+  height: 100vh;
+}
+.namelogo {
+  left: -1rem;
+}
+.name {
+  /* position: relative;
+  top: 25rem;
+  right: 50rem; */
+  background-color: red;
+  bottom: -10rem;
+}
+
+.navbarforhome {
+  display: flex;
+  flex-direction: column;
+}
+.allthelinks {
+  position: absolute;
+}
+
+.containerfornotes {
+  display: inline-flex;
+  height: 35rem;
+  /* overflow: scroll; */
+  /* margin-top: 5rem; */
+}
+
+.onemaininfo {
+  display: flex;
+}
+
+.thenotes {
+  position: relative;
+  height: 25rem;
+  overflow: scroll;
+  margin-top: 10rem;
+}
+
+.button-7 {
+  padding: 3rem;
 }

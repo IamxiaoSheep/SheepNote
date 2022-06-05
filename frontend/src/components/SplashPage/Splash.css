@@ -5,7 +5,7 @@
 
 body {
   background: var(--background);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 * {

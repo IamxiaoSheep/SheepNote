@@ -3,19 +3,25 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import gif from "../../imgs/testcase.gif";
 import logo from "../../imgs/SheepNote-logos2.jpeg";
+import laptop from "../../imgs/laptop.jpeg";
+import logotwo from "../../imgs/SheepNote-logos.jpeg";
 function Home() {
   return (
-    <>
+    <div className="homepage">
       <section className="about-area" id="about">
         <div className="text-part">
           <div className="content">
-            <h1 classname="SheepNote">SheepNote</h1>
+            <h1 className="SheepNote">A simple website for all your notes!</h1>
+            <img className="shakeimg" src={logotwo} />
             <div className="information">
               All your notes in one place. Sign up for free!
             </div>
           </div>
           <p>
             <img className="gif" src={gif} alt="loading..." />
+          </p>
+          <p>
+            <img className="template" src={laptop} alt="loading..." />
           </p>
           <div class="sheepanimation">
             <img src={logo} />
@@ -25,46 +31,21 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="port-area" id="portfolio">
-        <div className="text-part">
-          <h1>Portfolio Area</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid
-            atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus
-            corporis esse eveniet exercitationem fugiat harum pariatur sequi
-            similique tenetur vitae. Aliquam amet est excepturi, exercitationem
-            facere fugit ipsa laborum molestiae nemo officiis placeat quos
-            repellat saepe temporibus voluptatum.
-          </p>
-        </div>
-      </section>
-      <section className="service-area" id="services">
-        <div className="text-part">
-          <h1>Services Area</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid
-            atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus
-            corporis esse eveniet exercitationem fugiat harum pariatur sequi
-            similique tenetur vitae. Aliquam amet est excepturi, exercitationem
-            facere fugit ipsa laborum molestiae nemo officiis placeat quos
-            repellat saepe temporibus voluptatum.
-          </p>
-        </div>
-      </section>
-      <section className="contact-area" id="contact">
-        <div className="text-part">
-          <h1>Contact Area</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid
-            atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus
-            corporis esse eveniet exercitationem fugiat harum pariatur sequi
-            similique tenetur vitae. Aliquam amet est excepturi, exercitationem
-            facere fugit ipsa laborum molestiae nemo officiis placeat quos
-            repellat saepe temporibus voluptatum.
-          </p>
-        </div>
-      </section>
-    </>
+
+      <div className="sideinfo">
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+        <p> Work Smarter Not Harder!</p>
+
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+        <p> Simple To Use!</p>
+
+        <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+        <p> Grab A Note Below!</p>
+      </div>
+    </div>
   );
 }
 

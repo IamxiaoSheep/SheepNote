@@ -1,10 +1,11 @@
 // frontend/src/components/LoginFormPage/index.js
 import React, { useEffect, useState } from "react";
-
+import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
-import logo from "../../imgs/SheepNote-logos.jpeg";
+// import logo from "../../imgs/SheepNote-logos.jpeg";
 // import "./LoginForm.css";
+import logo from "../../imgs/SheepNote-logos2.jpeg";
 import "./Sandbox.css";
 import {
   getAllNotebooks,
@@ -23,7 +24,12 @@ function Sandbox() {
 
   //LOGGED IN USER CHECK
   const [view, setView] = useState(false);
-
+  //LOTOUT
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push(`/`);
+  };
   //THIS IS WHERE THE ARRAY FOR THE VIEW IS
   const [inputList, setInputList] = useState([]);
   const [id, setId] = useState(0);
@@ -173,9 +179,8 @@ function Sandbox() {
         <p>Not allowed to see this page</p>
       ) : (
         <div className="onecontainer">
-          <nav className="onemainnav"></nav>
-
-          <div className="onemaininfo">
+          <div className="navbarforhome">
+            <nav className="onemainnav"></nav>
             <div className="allthelinks">
               <div className="name">Welcome, {user?.username}!</div>
               <img className="namelogo" src={logo} />
@@ -189,9 +194,25 @@ function Sandbox() {
                   My Notebooks
                 </NavLink>
               </div>
+              <div>
+                <NavLink className="toNotebooks" to="/" onClick={logout}>
+                  Logout!
+                </NavLink>
+              </div>
+              <div class="sheepanimationtwo">
+                <img src={logo} />
+                <img src={logo} />
+                <img src={logo} />
+                <img src={logo} />
+              </div>
             </div>
+          </div>
+
+          <div className="onemaininfo">
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
-            <ul className="thenotes">{currentNoteBooks}</ul>
+            <div className="containerfornotes">
+              <div className="thenotes">{currentNoteBooks}</div>
+            </div>
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
               {inputView ? (
