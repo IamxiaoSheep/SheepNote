@@ -356,3 +356,14 @@
   background-color: #0095ff;
   border-radius: 3px;
 }
+
+.onemaininfo {
+  background-color: lightblue;
+}
+
+section {
+  background-color: lightblue;
+}
+.textarea {
+  background-color: white;
+}
