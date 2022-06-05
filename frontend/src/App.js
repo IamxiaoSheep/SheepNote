@@ -42,9 +42,11 @@ function App() {
         <Home />
       </Route>
       <Route path="/mynotebooks">
+        <Navigation isLoaded={isLoaded} />
         <Sandbox />
       </Route>
       <Route path={`/note/:noteId`}>
+        <Navigation isLoaded={isLoaded} />
         <MyNotes></MyNotes>
       </Route>
       <Route>Page Not Found</Route>

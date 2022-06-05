@@ -37,6 +37,7 @@ function Sandbox() {
   const [title, setTitle] = useState(false);
   const [titleName, settitleName] = useState("");
   const [open, setOpen] = useState("false");
+  const [titleconfirm, setTitleConfirm] = useState(false);
 
   //ERRORS
 
@@ -58,6 +59,7 @@ function Sandbox() {
 
     setId(e.target.getAttribute("data-id"));
     setInputList([e.target.value]);
+    setTitleConfirm(false);
   };
 
   /// READ THE VALUES OF THE CURRENT USER DATABASE
@@ -116,6 +118,7 @@ function Sandbox() {
   const createnotebook = () => {
     setErrors([]);
     setTitle(true);
+    setTitleConfirm(true);
   };
 
   const submitTitle = (e) => {
@@ -132,6 +135,7 @@ function Sandbox() {
       settitleName("");
       setErrors([]);
       setTitle(false);
+      setTitleConfirm(false);
       return;
     }
 
@@ -139,6 +143,8 @@ function Sandbox() {
     dispatch(getAllNotebooks(id));
     settitleName("");
     setErrors([]);
+    setTitleConfirm(false);
+    setTitle(false);
   };
   const titlenameHandler = (e) => {
     console.log(e.target.value.length, `****`);
@@ -157,6 +163,7 @@ function Sandbox() {
     e.preventDefault();
     settitleName("");
     setTitle(false);
+    setTitleConfirm(false);
   };
   //OPEN THE NOTEBOOK
   const opennotebook = () => {
@@ -174,7 +181,7 @@ function Sandbox() {
   };
 
   return (
-    <>
+    <div className="thenotespage">
       {!view ? (
         <p>Not allowed to see this page</p>
       ) : (
@@ -189,11 +196,11 @@ function Sandbox() {
                   Home
                 </NavLink>
               </div>
-              <div>
+              {/* <div>
                 <NavLink className="toNotebooks" to="/mynotebooks">
                   My Notebooks
                 </NavLink>
-              </div>
+              </div> */}
               <div>
                 <NavLink className="toNotebooks" to="/" onClick={logout}>
                   Logout!
@@ -211,6 +218,7 @@ function Sandbox() {
           <div className="onemaininfo">
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             <div className="containerfornotes">
+              <p className="text">Where is our head today?!</p>
               <div className="thenotes">{currentNoteBooks}</div>
             </div>
             <div className="readandedit">
@@ -218,46 +226,55 @@ function Sandbox() {
               {inputView ? (
                 <>
                   {errors.length > 0 ? errors : <></>}
-                  <textarea
-                    className="textarea"
-                    value={inputList}
-                    onChange={changeValue}
-                  ></textarea>
-                  <button onClick={updatenotebook}>Save!</button>
-                  <button className="arrow" onClick={deletenotebook}>
-                    Delete NoteBook!
-                  </button>
-                  <button className="arrow" onClick={opennotebook}>
-                    Open Notebook!
-                  </button>
-                  <button onClick={closearea}>Cancel</button>
+                  <div className="savedeleteopen">
+                    <textarea
+                      className="textarea"
+                      value={inputList}
+                      onChange={changeValue}
+                    ></textarea>
+                    <button onClick={updatenotebook}>Save!</button>
+                    <button className="arrow" onClick={deletenotebook}>
+                      Delete NoteBook!
+                    </button>
+                    <button className="arrow" onClick={opennotebook}>
+                      Open Notebook!
+                    </button>
+                    <button onClick={closearea}>Cancel</button>
+                  </div>
                 </>
               ) : (
                 <>
                   {title ? (
                     <></>
                   ) : (
-                    <button className="arrow" onClick={createnotebook}>
+                    <button
+                      className="arrow createnotebook"
+                      onClick={createnotebook}
+                    >
                       Create A NoteBook!
                     </button>
                   )}
                 </>
               )}
-              {title ? (
+              {titleconfirm ? (
                 <>
                   {errors.length > 0 ? errors : <></>}
                   <div>
                     <section>
-                      <form onSubmit={submitTitle}>
+                      <form className="notebookform" onSubmit={submitTitle}>
                         <input
                           type="text"
                           value={titleName}
                           onChange={titlenameHandler}
-                          placeholder="Title"
+                          placeholder="What's going on today?"
                           className="textarea"
                         ></input>
-                        <button type="submit">Confirm!</button>
-                        <button onClick={cancelClick}>Cancel!</button>
+                        <button type="submit" className="confirm">
+                          Confirm!
+                        </button>
+                        <button className="cancel" onClick={cancelClick}>
+                          Cancel!
+                        </button>
                       </form>
                     </section>
                   </div>
@@ -269,7 +286,7 @@ function Sandbox() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

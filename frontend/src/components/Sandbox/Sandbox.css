@@ -24,7 +24,7 @@
 .onemaininfo {
   width: 1312px;
   height: 100vh;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .readNotetitle {
@@ -198,6 +198,8 @@
   position: absolute;
   width: 100%;
   transition: 0.5s;
+  top: 10rem;
+  right: 15rem;
 }
 .sheepanimationtwo:hover img:nth-child(4) {
   transform: translate(160px, -160px);
@@ -247,13 +249,14 @@
   height: 100vh;
 }
 .namelogo {
-  left: -1rem;
+  position: absolute;
+  left: 15rem;
 }
 .name {
   /* position: relative;
   top: 25rem;
   right: 50rem; */
-  background-color: red;
+  /* background-color: red; */
   bottom: -10rem;
 }
 
@@ -280,9 +283,76 @@
   position: relative;
   height: 25rem;
   overflow: scroll;
-  margin-top: 10rem;
+  overflow-x: hidden;
+  /* margin-top: 10rem; */
+  left: 5rem;
+  top: 10rem;
 }
 
 .button-7 {
   padding: 3rem;
+}
+
+.thenotespage {
+  position: absolute;
+  top: 4rem;
+  height: auto;
+}
+
+.createnotebook {
+  position: absolute;
+  left: 2rem;
+  top: 1rem;
+  width: 20rem;
+}
+.savedeleteopen {
+  position: absolute;
+  left: 50rem;
+}
+
+.text {
+  position: absolute;
+  top: 5rem;
+  left: 30rem;
+}
+
+.readandedit {
+  position: relative;
+  height: 5rem;
+  top: 36rem;
+  left: -21rem;
+  background-color: white;
+}
+.textarea {
+  margin-top: 1rem;
+}
+
+.savedeleteopen {
+  position: absolute;
+  top: -1rem;
+  left: 7rem;
+}
+
+.notebookform {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 3rem;
+}
+
+.confirm {
+  position: relative;
+  left: -2rem;
+  top: 2rem;
+  width: 5rem;
+  background-color: #0095ff;
+  border-radius: 3px;
+}
+.cancel {
+  position: relative;
+  left: 12rem;
+  width: 5rem;
+  top: 0.78rem;
+  background-color: #0095ff;
+  border-radius: 3px;
 }
