@@ -1,5 +1,9 @@
 html {
   overflow: auto;
+  /* overflow: hidden; */
+}
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 body {
   margin: 0;
