@@ -238,3 +238,13 @@ body {
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
+
+.about-area {
+  background-color: lightblue;
+  height: 100vh;
+}
+
+.savedeleteopen {
+  display: flex;
+  flex-direction: column;
+}

@@ -93,7 +93,7 @@ function Sandbox() {
     const error = [];
     setErrors([]);
 
-    if (e.target.value.length === 50) {
+    if (e.target.value.length === 20) {
       error.push("Character Limit Reached");
       return setErrors(error);
     }
@@ -151,7 +151,7 @@ function Sandbox() {
     const error = [];
     setErrors([]);
 
-    if (e.target.value.length === 50) {
+    if (e.target.value.length === 20) {
       error.push("Character Limit Reached");
       return setErrors(error);
     }
@@ -225,21 +225,29 @@ function Sandbox() {
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
               {inputView ? (
                 <>
-                  {errors.length > 0 ? errors : <></>}
+                  {errors.length > 0 ? (
+                    <div className="errornotebookone">{errors}</div>
+                  ) : (
+                    <></>
+                  )}
                   <div className="savedeleteopen">
                     <textarea
                       className="textarea"
                       value={inputList}
                       onChange={changeValue}
                     ></textarea>
-                    <button onClick={updatenotebook}>Save!</button>
+                    <button className="arrow" onClick={updatenotebook}>
+                      Save!
+                    </button>
                     <button className="arrow" onClick={deletenotebook}>
                       Delete NoteBook!
                     </button>
                     <button className="arrow" onClick={opennotebook}>
                       Open Notebook!
                     </button>
-                    <button onClick={closearea}>Cancel</button>
+                    <button className="arrow" onClick={closearea}>
+                      Cancel
+                    </button>
                   </div>
                 </>
               ) : (
@@ -258,7 +266,11 @@ function Sandbox() {
               )}
               {titleconfirm ? (
                 <>
-                  {errors.length > 0 ? errors : <></>}
+                  {errors.length > 0 ? (
+                    <div className="errornotebooktwo">{errors}</div>
+                  ) : (
+                    <></>
+                  )}
                   <div>
                     <section>
                       <form className="notebookform" onSubmit={submitTitle}>
@@ -269,10 +281,10 @@ function Sandbox() {
                           placeholder="What's going on today?"
                           className="textarea"
                         ></input>
-                        <button type="submit" className="confirm">
+                        <button type="submit" className="confirm arrow">
                           Confirm!
                         </button>
-                        <button className="cancel" onClick={cancelClick}>
+                        <button className="cancel arrow" onClick={cancelClick}>
                           Cancel!
                         </button>
                       </form>

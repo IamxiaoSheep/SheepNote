@@ -321,7 +321,7 @@
   height: 5rem;
   top: 36rem;
   left: -21rem;
-  background-color: white;
+  background-color: lightblue;
 }
 .textarea {
   margin-top: 1rem;
@@ -352,7 +352,7 @@
   position: relative;
   left: 12rem;
   width: 5rem;
-  top: 0.78rem;
+  top: -1rem;
   background-color: #0095ff;
   border-radius: 3px;
 }
@@ -366,4 +366,21 @@ section {
 }
 .textarea {
   background-color: white;
+  resize: none;
+}
+
+.errornotebookone {
+  background-color: lightblue;
+  position: absolute;
+  left: 2rem;
+  color: red;
+}
+
+.errornotebooktwo {
+  background-color: lightblue;
+  position: absolute;
+  left: 2rem;
+  color: red;
+  top: 1rem;
+  right: 56rem;
 }
