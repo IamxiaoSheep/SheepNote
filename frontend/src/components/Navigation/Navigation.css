@@ -22,8 +22,9 @@ p {
   background-color: #81d8d0;
   width: 100%;
   height: 56px;
-  z-index: 3;
+  z-index: 5;
   margin-top: -5px;
+  border-bottom: 1mm ridge black;
 }
 .nav {
   display: flex;
