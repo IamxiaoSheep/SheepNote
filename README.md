@@ -69,26 +69,18 @@ To get a local copy up and running follow these simple example steps.
 4. Create a .env file based on the example with proper settings for your development environment
 5. Setup your PostgreSQL user, password and database and make sure it matches your .env file
 6. Migrate and seed your database
-   ```js
-  npx dotenv sequelize db:create
-npx dotenv sequelize db:migrate
-npx dotenv sequelize db:seed:all
+    ```sh
+   npx dotenv sequelize db:create
    ```
+    ```sh
+ npx dotenv sequelize db:migrate
+   ```
+    ```sh
+  npx dotenv sequelize db:seed:all
+   ```
+
   7. Run npm start in folder "backend", then run npm start in folder "frontend"
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Remove Thunk Iterations
-- [x] Add back to top links
-- [ ] Add more links to navbar
 
 
 
