@@ -12,7 +12,6 @@
 
 Build Using:
      <ul>
-        <li><a href="#built-with">Built With</a></li>
         <li>React</li>
          <li>Redux</li>
          <li>CSS</li>
