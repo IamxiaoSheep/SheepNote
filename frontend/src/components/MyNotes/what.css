@@ -1,3 +1,90 @@
-.onemaininfonote {
-  overflow: scroll;
+.realnotecreatebtn {
+  position: absolute;
+  background-color: red;
+  height: 5rem;
+  width: auto;
+  top: 45rem;
+  left: 35rem;
+}
+
+.createrealnotes {
+  display: inline-flex;
+  flex-direction: column;
+  position: absolute;
+
+  height: 10rem;
+  width: auto;
+  top: 10rem;
+  left: 65rem;
+}
+
+.topnotes {
+  position: absolute;
+  height: 5rem;
+  width: 40rem;
+  right: -23rem;
+}
+
+.bottomnotes {
+  position: absolute;
+  height: 30rem;
+  width: 40rem;
+  right: -23rem;
+  top: 5rem;
+}
+.cancelnote {
+  position: absolute;
+  top: 40rem;
+  right: 5rem;
+}
+
+.confirmnote {
+  position: absolute;
+  top: 40rem;
+  left: 10rem;
+}
+.notesonly {
+  background-color: lightblue;
+}
+
+.notescrud {
+  position: absolute;
+
+  top: 10rem;
+}
+
+.editrealnotesbottom {
+  position: absolute;
+  height: 5rem;
+  width: 40rem;
+  left: 54rem;
+}
+
+.editrealnotestop {
+  position: absolute;
+  height: 30rem;
+  width: 40rem;
+  left: 54rem;
+}
+
+.saverealnote {
+  position: absolute;
+  background-color: red;
+  left: 75rem;
+  top: 35rem;
+}
+
+.cancelrealnote {
+  position: absolute;
+  background-color: red;
+  left: 65rem;
+  top: 35rem;
+}
+.deleterealnote {
+  position: absolute;
+  background-color: red;
+  left: 75rem;
+  top: 35rem;
+
+  white-space: nowrap;
 }

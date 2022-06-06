@@ -13,6 +13,12 @@ import {
   deleteNotebooks,
   createNotebooks,
 } from "../../store/notebooks";
+import {
+  createNote,
+  getAllNotes,
+  deleteAllNotes,
+  saveNotes,
+} from "../../store/notes";
 
 function Sandbox() {
   const dispatch = useDispatch();
@@ -48,16 +54,38 @@ function Sandbox() {
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.notebook);
 
+  //HOW WE READ FROM STORE FOR NOTES
+  const smallnotes = useSelector((state) => state.note);
+  const smallnotesCollection = Object.values(smallnotes).map((el) => (
+    <>
+      <div
+        className="button-7"
+        value={el?.title}
+        key={el?.id + 1}
+        data-key={el?.id}
+        data-id={el?.title}
+        data-note={el?.notedata}
+      >
+        {el?.title}
+        <div></div>
+        {el?.notedata}
+        {/* <div data-note={el?.notedata}> {el?.notedata}</div> */}
+      </div>
+    </>
+  ));
+
   //SET THE CURRENT VIEW OF THE SELECTED BOX
   const theCurrentSelectedNoteBook = (e) => {
     setTitle(false);
     settitleName("");
     setErrors([]);
+    dispatch(getAllNotes(id));
     if (e.target.value.length !== 0) {
       setInputView(true);
     }
 
     setId(e.target.getAttribute("data-id"));
+    console.log(id);
     setInputList([e.target.value]);
     setTitleConfirm(false);
   };
@@ -78,6 +106,7 @@ function Sandbox() {
   //  (READ THUNK) RENDER AFTER FIRST TRY TO GET THE ACTUALY NOTES
   useEffect(() => {
     dispatch(getAllNotebooks(id));
+    dispatch(getAllNotes(id));
   }, [dispatch, setInputView, setErrors]);
 
   //CHECK THE USER EXISTENCE
@@ -220,6 +249,7 @@ function Sandbox() {
             <div className="containerfornotes">
               <p className="text">Where is our head today?!</p>
               <div className="thenotes">{currentNoteBooks}</div>
+              <div className="preview">{smallnotesCollection}</div>
             </div>
             <div className="readandedit">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
@@ -272,7 +302,7 @@ function Sandbox() {
                     <></>
                   )}
                   <div>
-                    <section>
+                    <section className="NOTEBOOKCONFIRM">
                       <form className="notebookform" onSubmit={submitTitle}>
                         <input
                           type="text"

@@ -280,13 +280,13 @@
 }
 
 .thenotes {
-  position: relative;
+  position: absolute;
   height: 25rem;
   overflow: scroll;
   overflow-x: hidden;
-  /* margin-top: 10rem; */
-  left: 5rem;
-  top: 10rem;
+  margin-bottom: 40rem;
+  left: 25rem;
+  bottom: 10rem;
 }
 
 .button-7 {
@@ -330,7 +330,7 @@
 .savedeleteopen {
   position: absolute;
   top: -1rem;
-  left: 7rem;
+  left: 33rem;
 }
 
 .notebookform {
@@ -383,4 +383,36 @@ section {
   color: red;
   top: 1rem;
   right: 56rem;
+}
+
+.preview {
+  position: absolute;
+  height: 50rem;
+  width: 10rem;
+  right: 20rem;
+  background-color: red;
+}
+
+.thenotes {
+  display: inline-flex;
+  position: absolute;
+  right: 20rem;
+  top: 10rem;
+  width: 26rem;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.createnotebook {
+  left: 28rem;
+}
+
+.NOTEBOOKCONFIRM {
+  position: absolute;
+  left: 25rem;
+}
+
+.savedeleteopen {
+  right: 10rem;
+  width: 10rem;
 }
