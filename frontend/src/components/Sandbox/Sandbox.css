@@ -415,20 +415,8 @@ section {
   position: absolute;
 
   background-color: red;
-  overflow: scroll;
+  overflow: auto;
   left: 60rem;
   top: 18rem;
-  overflow-x: hidden;
-}
-.preview button {
-  display: flex;
-  flex-direction: column;
-  height: 6rem;
-  position: absolute;
-
-  overflow: scroll;
-  left: 60rem;
-  top: 18rem;
-  overflow-x: hidden;
-  background-color: white;
+  /* overflow-x: hidden; */
 }
