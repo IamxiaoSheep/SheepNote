@@ -1,38 +1,7 @@
 # SheepNotes
 <div id="top"></div>
 
-
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">SheepNotes</h3>
-
-
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-        <li>React</li>
-         <li>Redux</li>
-         <li>CSS</li>
-         <li>Javascript</li>
-         <li>Express</li>
-      </ul>
-    </li>
-    <li>
-  </ol>
-</details>
+>
 
 
 
@@ -41,7 +10,15 @@
 
 [SheepNotes][<img width="1619" alt="Screen Shot 2022-06-06 at 7 39 53 AM" src="https://user-images.githubusercontent.com/96637410/172183512-538ec3be-ebec-4b57-b9de-e30f4a0a81a8.png">](https://sheepnotes.herokuapp.com)
 
-
+Build Using:
+     <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li>React</li>
+         <li>Redux</li>
+         <li>CSS</li>
+         <li>Javascript</li>
+         <li>Express</li>
+      </ul>
 
 
 
@@ -69,19 +46,11 @@ To get a local copy up and running follow these simple example steps.
 4. Create a .env file based on the example with proper settings for your development environment
 5. Setup your PostgreSQL user, password and database and make sure it matches your .env file
 6. Migrate and seed your database
-    ```sh
-   npx dotenv sequelize db:create
-   ```
-  
-  
-    ```sh
+ ```json
+ npx dotenv sequelize db:create
  npx dotenv sequelize db:migrate
-   ```
-  
-  
-    ```sh
-  npx dotenv sequelize db:seed:all
-   ```
+ npx dotenv sequelize db:seed:all
+ ```
 
 7. npm start backend and frontend and you're done!
 
