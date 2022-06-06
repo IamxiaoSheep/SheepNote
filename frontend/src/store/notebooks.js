@@ -72,13 +72,11 @@ export const deleteNotebooks = (id) => async (dispatch) => {
 
 //CREATE THUNK
 export const createNotebooks = (titleName, id) => async (dispatch) => {
-  console.log(`STEP 2`);
   const response = await csrfFetch("/api/profile/notebook", {
     method: "POST",
     body: JSON.stringify({ titleName, id }),
   });
   const notebooks = await response.json();
-  // console.log(`STEP 4`, notebooks);
 
   dispatch(addNotebook(notebooks));
   return notebooks;

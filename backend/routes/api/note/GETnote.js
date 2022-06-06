@@ -17,7 +17,7 @@ router.get(
   async (req, res) => {
     const noteId = req.params.id;
     const notebook = await db.NoteBook.findByPk(noteId);
-    // console.log(notebook, `***** what is this`);
+
     if (notebook === null) {
       return res.json({ Error: `wtf mate it doesn't exist` });
     }

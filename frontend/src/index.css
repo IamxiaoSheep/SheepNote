@@ -21,3 +21,28 @@
 #root {
   width: auto;
 }
+
+.pagenotfound {
+  background-color: lightblue;
+  position: relative;
+  width: auto;
+  height: 100vh;
+}
+
+.pagenotfound p {
+  position: absolute;
+
+  width: 1rem;
+  left: 40rem;
+  height: 100vh;
+  top: 10rem;
+  white-space: nowrap;
+}
+
+.gun {
+  position: absolute;
+  width: 45rem;
+  left: 23rem;
+  height: 35rem;
+  top: 15rem;
+}

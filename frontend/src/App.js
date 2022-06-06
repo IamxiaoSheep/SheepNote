@@ -13,6 +13,7 @@ import Sandbox from "./components/Sandbox";
 import MyNotes from "./components/MyNotes";
 // import { AllNoteBooks } from "./components/Main/AllNoteBooks";
 import "./index.css";
+import goback from "./imgs/goback.jpeg";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +50,13 @@ function App() {
         <Navigation isLoaded={isLoaded} />
         <MyNotes></MyNotes>
       </Route>
-      <Route>Page Not Found</Route>
+      <Route path="*">
+        <Navigation isLoaded={isLoaded} />
+        <div className="pagenotfound">
+          <p>Page Not Found Turn Around</p>
+          <img className="gun" src={goback} />
+        </div>
+      </Route>
     </Switch>
   );
 }

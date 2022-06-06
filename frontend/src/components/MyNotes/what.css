@@ -103,12 +103,3 @@
 form input::-webkit-input-placeholder {
   text-align: center;
 }
-
-.thenotes::-webkit-scrollbar {
-  position: absolute;
-  overflow: auto;
-  scrollbar-width: none;
-
-  width: 1mm;
-  right: 10rem;
-}

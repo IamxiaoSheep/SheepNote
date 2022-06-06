@@ -20,6 +20,8 @@ import {
   saveNotes,
 } from "../../store/notes";
 
+import notallowed from "../../imgs/unauthorized.gif";
+
 function Sandbox() {
   const dispatch = useDispatch();
   const { noteId } = useParams();
@@ -116,7 +118,6 @@ function Sandbox() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changeValue = (e) => {
-    console.log(e.target.value.length);
     const error = [];
     setErrors([]);
 
@@ -150,11 +151,6 @@ function Sandbox() {
 
   const submitTitle = (e) => {
     e.preventDefault();
-    // console.log(titleName.length === 0, `*****`);
-    // if (e.target.value === undefined) {
-    //   dispatch(createNotebooks("Untitled", userId));
-    //   dispatch(getAllNotebooks(id));
-    // }
 
     if (titleName.length === 0) {
       dispatch(createNotebooks("Untitled", userId));
@@ -174,7 +170,6 @@ function Sandbox() {
     setTitle(false);
   };
   const titlenameHandler = (e) => {
-    console.log(e.target.value.length, `****`);
     const error = [];
     setErrors([]);
 
@@ -210,7 +205,14 @@ function Sandbox() {
   return (
     <div className="thenotespage">
       {!view ? (
-        <p>Not allowed to see this page</p>
+        <div className="areyoulost">
+          <p>Are you lost? </p>
+          <div>
+            <NavLink to="/">
+              <img className="notallowed" src={notallowed} />
+            </NavLink>
+          </div>
+        </div>
       ) : (
         <div className="onecontainer">
           <div className="navbarforhome">

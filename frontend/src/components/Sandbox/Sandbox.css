@@ -415,9 +415,27 @@ section {
   position: absolute;
 
   background-color: red;
-  overflow: auto;
+  overflow: scroll;
   left: 60rem;
   top: 18rem;
   overflow-x: hidden;
   /* overflow-x: hidden; */
+}
+
+.notallowed {
+  position: absolute;
+  width: 50rem;
+  top: 10rem;
+  left: 1rem;
+}
+
+.areyoulost {
+  position: absolute;
+  width: 200rem;
+  left: 20rem;
+  top: 5rem;
+}
+
+.areyoulost p {
+  font-size: 10rem;
 }
