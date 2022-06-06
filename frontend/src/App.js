@@ -12,6 +12,7 @@ import MyNoteBook from "./components/MyNoteBooks";
 import Sandbox from "./components/Sandbox";
 import MyNotes from "./components/MyNotes";
 // import { AllNoteBooks } from "./components/Main/AllNoteBooks";
+import "./index.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
         <LoginFormPage />
       </Route>
       <Route path="/signup">
+        <Navigation isLoaded={isLoaded} />
         <SignupFormPage />
       </Route>
       <Route path="/profile/notebook">
@@ -40,9 +42,11 @@ function App() {
         <Home />
       </Route>
       <Route path="/mynotebooks">
+        <Navigation isLoaded={isLoaded} />
         <Sandbox />
       </Route>
       <Route path={`/note/:noteId`}>
+        <Navigation isLoaded={isLoaded} />
         <MyNotes></MyNotes>
       </Route>
       <Route>Page Not Found</Route>

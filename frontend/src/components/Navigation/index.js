@@ -30,13 +30,18 @@ function Navigation({ isLoaded }) {
             </NavLink>
             <ul className="nav">
               <li>
-                <NavLink to="/home">Home</NavLink>
+                <NavLink className="thelinks" to="/home">
+                  Home
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink className="thelinks" to="/mynotebooks">
+                  My Notes
+                </NavLink>
               </li>
               <li>
                 <ProfileButton user={sessionUser} />
-              </li>
-              <li>
-                <NavLink to="/mynotebooks">My Notes</NavLink>
               </li>
             </ul>
           </div>
@@ -50,18 +55,24 @@ function Navigation({ isLoaded }) {
             </NavLink>
             <ul className="nav">
               <li>
-                <NavLink to="/home">Home</NavLink>
+                <NavLink className="thelinks" to="/home">
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/login">Login</NavLink>
+                <NavLink className="thelinks" to="/login">
+                  Login
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/login" onClick={logins}>
+                <NavLink className="thelinks" to="/" onClick={logins}>
                   Demo User
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/signup">Signup</NavLink>
+                <NavLink className="thelinks" to="/signup">
+                  Signup
+                </NavLink>
               </li>
             </ul>
           </div>

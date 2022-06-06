@@ -1,0 +1,112 @@
+.signup {
+  width: auto;
+  position: absolute;
+  height: 100vh;
+  top: 5rem;
+  margin-left: auto;
+  /* margin-right: auto; */
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.signupfield {
+  border: 1px solid #81d8d0;
+  position: relative;
+  top: 9.5rem;
+  width: 25rem;
+  left: 68rem;
+  background-color: #81d8d0;
+  /* display: inline-flex; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.signuplabel {
+  width: 5rem;
+  position: relative;
+  left: -4rem;
+}
+.signupinput {
+  position: absolute;
+  width: 13rem;
+  left: 5rem;
+}
+
+.signupform {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.btnsignup {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #81d8d0;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 5px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  top: -1rem;
+  left: 2rem;
+  height: 2rem;
+}
+
+.btnsignup span {
+  cursor: pointer;
+  /* display: inline-block; */
+  position: relative;
+  transition: 0.5s;
+  top: -0.5rem;
+  font-size: 30px;
+}
+.btnsignup span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+  left: 1rem;
+}
+
+.btnsignup:hover span {
+  /* padding-right: 25px; */
+  /* left: 5rem; */
+}
+
+.btnsignup:hover span:after {
+  opacity: 1;
+  right: 0;
+  left: 7rem;
+  color: black;
+}
+
+.errorssignup {
+  position: absolute;
+  top: 28rem;
+  left: 0rem;
+
+  color: red;
+  list-style-type: none;
+}
+
+.errorcontainer {
+}
+
+.animation {
+  position: absolute;
+  width: 50rem;
+  left: 5rem;
+  top: 10rem;
+  height: 400px;
+}
+
+.signup {
+  background-color: lightblue;
+  margin-top: -2rem;
+}

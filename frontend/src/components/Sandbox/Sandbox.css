@@ -1,18 +1,20 @@
-body {
-  overflow: scroll;
-}
-
 .onecontainer {
-  -webkit-box-flex: 1;
+  margin: 0;
+  padding: 0;
+  /* -webkit-box-flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex: 1;
-  flex: 1;
-  overflow: scroll;
+  flex: 1; */
+  /* overflow: scroll; */
   /* width: 1632px;
   height: 100vh; */
 }
+/* 
+.onecontainer::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+
 .onemainnav {
   width: 320px;
   height: 100vh;
@@ -22,7 +24,7 @@ body {
 .onemaininfo {
   width: 1312px;
   height: 100vh;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .readNotetitle {
@@ -123,4 +125,299 @@ body {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px #999;
+}
+
+.allthelinks {
+}
+
+.name {
+  position: relative;
+  top: 5rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 2rem;
+}
+
+.namelogo {
+  position: absolute;
+  top: 5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: white;
+  display: inline-block;
+  left: -2rem;
+}
+
+.toHome {
+  /* all: unset; */
+  position: relative;
+  top: 10rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 1rem;
+}
+.toHome:hover {
+  color: white;
+  font-size: 150%;
+}
+
+.toNotebooks {
+  position: relative;
+  top: 10rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 1rem;
+}
+
+.toNotebooks:hover {
+  position: relative;
+  top: 10rem;
+  /* background-color: red; */
+  display: inline-block;
+  color: white;
+  left: 3rem;
+  font-size: 150%;
+}
+
+.sheepanimationtwo {
+  /* position: relative; */
+  width: 160px;
+  height: 340px;
+  margin-top: 150px;
+  background: rgba(0, 0, 0, 0);
+  transform: rotate(-30deg) skew(25deg) scale(0.8);
+  transition: 0.5s;
+  margin-left: 12rem;
+  top: 10rem;
+  right: 5rem;
+}
+.sheepanimationtwo img {
+  position: absolute;
+  width: 100%;
+  transition: 0.5s;
+  top: 10rem;
+  right: 15rem;
+}
+.sheepanimationtwo:hover img:nth-child(4) {
+  transform: translate(160px, -160px);
+  opacity: 1;
+}
+.sheepanimationtwo:hover img:nth-child(3) {
+  transform: translate(120px, -120px);
+  opacity: 0.8;
+}
+.sheepanimationtwo:hover img:nth-child(2) {
+  transform: translate(80px, -80px);
+  opacity: 0.6;
+}
+.sheepanimationtwo:hover img:nth-child(1) {
+  transform: translate(40px, -40px);
+  opacity: 0.4;
+}
+
+.containerfornotes ul {
+  /* display: inline-flex;
+  position: absolute;
+  bottom: 1rem; */
+}
+
+.readandedit {
+  /* position: absolute;
+  bottom: 1rem;
+  left: 50rem; */
+}
+
+.root {
+  all: unset;
+}
+
+.onecontainer {
+  all: unset;
+  display: inline-flex;
+}
+
+.onemainnav {
+  display: inline-block;
+  height: 100vh;
+}
+
+.onemaininfo {
+  display: inline-block;
+  height: 100vh;
+}
+.namelogo {
+  position: absolute;
+  left: 15rem;
+}
+.name {
+  /* position: relative;
+  top: 25rem;
+  right: 50rem; */
+  /* background-color: red; */
+  bottom: -10rem;
+}
+
+.navbarforhome {
+  display: flex;
+  flex-direction: column;
+}
+.allthelinks {
+  position: absolute;
+}
+
+.containerfornotes {
+  display: inline-flex;
+  height: 35rem;
+  /* overflow: scroll; */
+  /* margin-top: 5rem; */
+}
+
+.onemaininfo {
+  display: flex;
+}
+
+.thenotes {
+  position: absolute;
+  height: 25rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-bottom: 40rem;
+  left: 25rem;
+  bottom: 10rem;
+}
+
+.button-7 {
+  padding: 3rem;
+}
+
+.thenotespage {
+  position: absolute;
+  top: 4rem;
+  height: auto;
+}
+
+.createnotebook {
+  position: absolute;
+  left: 2rem;
+  top: 1rem;
+  width: 20rem;
+}
+.savedeleteopen {
+  position: absolute;
+  left: 50rem;
+}
+
+.text {
+  position: absolute;
+  top: 5rem;
+  left: 30rem;
+}
+
+.readandedit {
+  position: relative;
+  height: 5rem;
+  top: 36rem;
+  left: -21rem;
+  background-color: lightblue;
+}
+.textarea {
+  margin-top: 1rem;
+}
+
+.savedeleteopen {
+  position: absolute;
+  top: -1rem;
+  left: 33rem;
+}
+
+.notebookform {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 3rem;
+}
+
+.confirm {
+  position: relative;
+  left: -2rem;
+  top: 2rem;
+  width: 5rem;
+  background-color: #0095ff;
+  border-radius: 3px;
+}
+.cancel {
+  position: relative;
+  left: 12rem;
+  width: 5rem;
+  top: -1rem;
+  background-color: #0095ff;
+  border-radius: 3px;
+}
+
+.onemaininfo {
+  background-color: lightblue;
+}
+
+section {
+  background-color: lightblue;
+}
+.textarea {
+  background-color: white;
+  resize: none;
+}
+
+.errornotebookone {
+  background-color: lightblue;
+  position: absolute;
+  left: 2rem;
+  color: red;
+}
+
+.errornotebooktwo {
+  background-color: lightblue;
+  position: absolute;
+  left: 2rem;
+  color: red;
+  top: 1rem;
+  right: 56rem;
+}
+
+.thenotes {
+  display: inline-flex;
+  position: absolute;
+  right: 20rem;
+  top: 10rem;
+  width: 26rem;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.createnotebook {
+  left: 28rem;
+}
+
+.NOTEBOOKCONFIRM {
+  position: absolute;
+  left: 25rem;
+}
+
+.savedeleteopen {
+  right: 10rem;
+  width: 10rem;
+}
+.preview {
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+  position: absolute;
+
+  background-color: red;
+  overflow: auto;
+  left: 60rem;
+  top: 18rem;
+  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }

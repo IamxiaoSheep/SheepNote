@@ -26,36 +26,81 @@ function LoginFormPage() {
   };
 
   return (
-    <div className="loginbox">
-      <img src={logo} className="avatar" alt="sheep"></img>
-      <form onSubmit={handleSubmit} className="login hi">
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button className="btn btn-primary btn-block btn-large" type="submit">
-          Log In
-        </button>
-      </form>
+    // <div className="login">
+    //   <div className="loginbox">
+    //     <img src={logo} className="avatar" alt="sheep"></img>
+    //     <form
+    //       typer="submit"
+    //       onSubmit={handleSubmit}
+    //       className="input-group margin-bottom-sm"
+    //     >
+    //       <ul>
+    //         {errors.map((error, idx) => (
+    //           <li key={idx}>{error}</li>
+    //         ))}
+    //       </ul>
+    //       <label>
+    //         Username or Email
+    //         <input
+    //           type="text"
+    //           value={credential}
+    //           onChange={(e) => setCredential(e.target.value)}
+    //           required
+    //         />
+    //       </label>
+    //       <label>
+    //         Password
+    //         <input
+    //           type="password"
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //           required
+    //         />
+    //       </label>
+    //       <button className="btn btn-primary btn-block btn-large" type="submit">
+    //         Log In
+    //       </button>
+    //     </form>
+    //   </div>
+    // </div>
+    <div class="loginbox">
+      <div class="center">
+        <img src={logo} className="avatar" alt="sheep"></img>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              placeholder="Username or Email"
+              required
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+            />
+          </label>
+          <button className="login" type="submit">
+            Log In
+          </button>
+        </form>
+        <div class="signuppart">
+          <h4>Don't have an acount?!</h4>
+          <div>
+            <a href="/signup">Create account</a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

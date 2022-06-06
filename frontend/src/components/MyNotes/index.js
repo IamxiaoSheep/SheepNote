@@ -4,19 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 
 import "./what.css";
+import logo from "../../imgs/SheepNote-logos2.jpeg";
 import {
   createNote,
   getAllNotes,
   deleteAllNotes,
   saveNotes,
 } from "../../store/notes";
-
+import * as sessionActions from "../../store/session";
 function MyNotes() {
   const dispatch = useDispatch();
   const { noteId } = useParams();
   const history = useHistory();
   // const arr = [];
 
+  //LOTOUT
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push(`/`);
+  };
   //CHECK IF THE USER IS LOGGED IN
   const user = useSelector((state) => state.session.user);
 
@@ -56,6 +63,7 @@ function MyNotes() {
     setNoteData(data);
     setId(e.target.getAttribute("data-key"));
     setInputList(`${title} ${data}`);
+    setTitle(false);
   };
 
   /// READ THE VALUES OF THE CURRENT USER DATABASE
@@ -127,6 +135,7 @@ function MyNotes() {
     setInputList([]);
     setnoteTitle("");
     setNoteData("");
+    setInputView(false);
   };
 
   //CREATING NOTEBOOK
@@ -174,7 +183,7 @@ function MyNotes() {
       {!view ? (
         <p>Sorry Mate Page Doesn't Exist</p>
       ) : (
-        <div className="onecontainer">
+        <div className="notesonly">
           <nav className="onemainnav">
             <div>
               <ul>
@@ -183,12 +192,30 @@ function MyNotes() {
             </div>
           </nav>
           <div className="onemaininfonote">
-            <div>{user?.username} What's up G</div>
-            <div>
-              <NavLink to="/home">Welcome Home</NavLink>
-            </div>
-            <div>
-              <NavLink to="/mynotebooks">My Notebooks</NavLink>
+            <div className="allthelinksnotesforrealnotes">
+              <div className="name">Welcome, {user?.username}!</div>
+              <img className="namelogo" src={logo} />
+              <div>
+                <NavLink className="toHome" to="/home">
+                  Home
+                </NavLink>
+              </div>
+              {/* <div>
+                <NavLink className="toNotebooks" to="/mynotebooks">
+                  My Notebooks
+                </NavLink>
+              </div> */}
+              <div>
+                <NavLink className="toNotebooks" to="/" onClick={logout}>
+                  Logout!
+                </NavLink>
+              </div>
+              <div class="sheepanimationtwo">
+                <img src={logo} />
+                <img src={logo} />
+                <img src={logo} />
+                <img src={logo} />
+              </div>
             </div>
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             {/* <ul className="thenotes">{currentNoteTitle}</ul> */}
@@ -196,23 +223,45 @@ function MyNotes() {
               {currentNoteTitle}
               {/* {currentNoteData} */}
             </ul>
-            <div className="readandedit">
+            <div className="readandeditnotes">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
 
               {inputView ? (
-                <>
-                  <textarea value={noteTitle} onChange={changetitle}></textarea>
-                  <textarea value={noteData} onChange={changedata}></textarea>
-                  <button onClick={updatenote}>Save!</button>
-                  <button onClick={cancelEdit}>Cancel!</button>
-                  <button onClick={deletenotebook}>Delete NoteBook!</button>
-                </>
+                <div className="notescrud">
+                  <input
+                    className="editrealnotesbottom"
+                    value={noteTitle}
+                    onChange={changetitle}
+                  ></input>
+                  <input
+                    className="editrealnotestop"
+                    value={noteData}
+                    onChange={changedata}
+                  ></input>
+                  <button className="arrow saverealnote" onClick={updatenote}>
+                    Save!
+                  </button>
+                  <button className="arrow cancelrealnote" onClick={cancelEdit}>
+                    Cancel!
+                  </button>
+                  <button
+                    className="arrow deleterealnote"
+                    onClick={deletenotebook}
+                  >
+                    Delete NoteBook!
+                  </button>
+                </div>
               ) : (
                 <>
                   {title ? (
                     <></>
                   ) : (
-                    <button onClick={createnote}>Create A Note!</button>
+                    <button
+                      className="realnotecreatebtn arrow"
+                      onClick={createnote}
+                    >
+                      Create A Note!
+                    </button>
                   )}
                 </>
               )}
@@ -220,30 +269,31 @@ function MyNotes() {
               {title ? (
                 <>
                   <div>
-                    <section>
-                      <form onSubmit={submitTitle}>
-                        <input
-                          type="text"
-                          value={titleName}
-                          onChange={titlenameHandler}
-                          placeholder="Title"
-                        ></input>
-                        <button type="submit">Confirm!</button>
-                        <button onClick={cancelClick}>Cancel!</button>
-                      </form>
-                    </section>
-                    <div>
-                      <section>
-                        <form onSubmit={submitTitle}>
-                          <input
-                            type="text"
-                            value={titleData}
-                            onChange={titledataHandler}
-                            placeholder="Data"
-                          ></input>
-                        </form>
-                      </section>
-                    </div>{" "}
+                    <form className="createrealnotes" onSubmit={submitTitle}>
+                      <input
+                        type="text"
+                        value={titleName}
+                        onChange={titlenameHandler}
+                        placeholder="Title"
+                        className="topnotes"
+                      ></input>
+                      <button className="confirmnote arrow" type="submit">
+                        Confirm!
+                      </button>
+                      <button
+                        className="cancelnote arrow"
+                        onClick={cancelClick}
+                      >
+                        Cancel!
+                      </button>
+                      <input
+                        type="text"
+                        value={titleData}
+                        onChange={titledataHandler}
+                        placeholder="Data"
+                        className="bottomnotes"
+                      ></input>
+                    </form>
                   </div>
                 </>
               ) : (
