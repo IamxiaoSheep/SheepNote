@@ -49,6 +49,9 @@ function MyNotes() {
 
   ///HOW WE READ FROM THE STORE
   const checkNotes = useSelector((state) => state.note);
+  //ERRORS
+
+  const [errors, setErrors] = useState([]);
 
   //SET THE CURRENT VIEW OF THE SELECTED BOX
   const theCurrentSelectedNoteBook = (e) => {
@@ -104,9 +107,23 @@ function MyNotes() {
 
   ///CHANING THE VALUE OF THE CURRENT INPUT
   const changetitle = (e) => {
+    const error = [];
+    setErrors([]);
+
+    if (e.target.value.length === 20) {
+      error.push("Character Limit Reached");
+      return setErrors(error);
+    }
     setnoteTitle(e.target.value);
   };
   const changedata = (e) => {
+    const error = [];
+    setErrors([]);
+
+    if (e.target.value.length === 20) {
+      error.push("Character Limit Reached");
+      return setErrors(error);
+    }
     setNoteData(e.target.value);
   };
 
@@ -225,7 +242,11 @@ function MyNotes() {
             </ul>
             <div className="readandeditnotes">
               {/* THIS IS WHERE WE WILL UPDATE THE NOTEBOOK THE UPDATE OF CRUD 2/4 */}
-
+              {errors.length > 0 ? (
+                <div className="errornotebookone">{errors}</div>
+              ) : (
+                <></>
+              )}
               {inputView ? (
                 <div className="notescrud">
                   <input
