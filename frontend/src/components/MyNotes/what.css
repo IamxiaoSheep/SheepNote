@@ -58,33 +58,48 @@
   height: 5rem;
   width: 40rem;
   left: 54rem;
+  top: 1rem;
 }
 
 .editrealnotestop {
   position: absolute;
-  height: 30rem;
+  height: 22rem;
   width: 40rem;
   left: 54rem;
+  top: 6rem;
+  bottom: 1rem;
 }
 
 .saverealnote {
   position: absolute;
   background-color: red;
-  left: 75rem;
-  top: 35rem;
+  left: 61rem;
+  top: 29.5rem;
 }
 
 .cancelrealnote {
   position: absolute;
   background-color: red;
-  left: 65rem;
-  top: 35rem;
+  left: 55.5rem;
+  top: 29.5rem;
 }
 .deleterealnote {
   position: absolute;
   background-color: red;
-  left: 75rem;
-  top: 35rem;
-
+  left: 65.5rem;
+  top: 29.5rem;
   white-space: nowrap;
+}
+
+.allthelinksnotesforrealnotes {
+  /* background-color: red; */
+  position: absolute;
+
+  height: 100rem;
+
+  top: 1rem;
+}
+
+form input::-webkit-input-placeholder {
+  text-align: center;
 }

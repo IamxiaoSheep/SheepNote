@@ -63,6 +63,7 @@ function MyNotes() {
     setNoteData(data);
     setId(e.target.getAttribute("data-key"));
     setInputList(`${title} ${data}`);
+    setTitle(false);
   };
 
   /// READ THE VALUES OF THE CURRENT USER DATABASE
@@ -134,6 +135,7 @@ function MyNotes() {
     setInputList([]);
     setnoteTitle("");
     setNoteData("");
+    setInputView(false);
   };
 
   //CREATING NOTEBOOK
@@ -190,7 +192,7 @@ function MyNotes() {
             </div>
           </nav>
           <div className="onemaininfonote">
-            <div className="allthelinksnotes">
+            <div className="allthelinksnotesforrealnotes">
               <div className="name">Welcome, {user?.username}!</div>
               <img className="namelogo" src={logo} />
               <div>

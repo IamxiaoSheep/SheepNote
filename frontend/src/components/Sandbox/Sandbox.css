@@ -385,14 +385,6 @@ section {
   right: 56rem;
 }
 
-.preview {
-  position: absolute;
-  height: 50rem;
-  width: 10rem;
-  right: 20rem;
-  background-color: red;
-}
-
 .thenotes {
   display: inline-flex;
   position: absolute;
@@ -415,4 +407,28 @@ section {
 .savedeleteopen {
   right: 10rem;
   width: 10rem;
+}
+.preview {
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+  position: absolute;
+
+  background-color: red;
+  overflow: scroll;
+  left: 60rem;
+  top: 18rem;
+  overflow-x: hidden;
+}
+.preview button {
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+  position: absolute;
+
+  overflow: scroll;
+  left: 60rem;
+  top: 18rem;
+  overflow-x: hidden;
+  background-color: white;
 }

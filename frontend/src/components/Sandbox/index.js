@@ -85,7 +85,6 @@ function Sandbox() {
     }
 
     setId(e.target.getAttribute("data-id"));
-    console.log(id);
     setInputList([e.target.value]);
     setTitleConfirm(false);
   };
@@ -94,7 +93,6 @@ function Sandbox() {
   const currentNoteBooks = Object.values(checkNotes).map((el) => (
     <button
       className="button-7"
-      // className="textarea"
       value={el?.notetitle}
       data-id={el?.id}
       onClick={theCurrentSelectedNoteBook}
@@ -107,7 +105,7 @@ function Sandbox() {
   useEffect(() => {
     dispatch(getAllNotebooks(id));
     dispatch(getAllNotes(id));
-  }, [dispatch, setInputView, setErrors]);
+  }, [dispatch, setInputView, setErrors, id]);
 
   //CHECK THE USER EXISTENCE
   useEffect(() => {
