@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![SheepNotes][<img width="1619" alt="Screen Shot 2022-06-06 at 7 39 53 AM" src="https://user-images.githubusercontent.com/96637410/172183512-538ec3be-ebec-4b57-b9de-e30f4a0a81a8.png">](https://sheepnotes.herokuapp.com)
+[SheepNotes][<img width="1619" alt="Screen Shot 2022-06-06 at 7 39 53 AM" src="https://user-images.githubusercontent.com/96637410/172183512-538ec3be-ebec-4b57-b9de-e30f4a0a81a8.png">](https://sheepnotes.herokuapp.com)
 
 
 
