@@ -72,14 +72,18 @@ To get a local copy up and running follow these simple example steps.
     ```sh
    npx dotenv sequelize db:create
    ```
+  
+  
     ```sh
  npx dotenv sequelize db:migrate
    ```
+  
+  
     ```sh
   npx dotenv sequelize db:seed:all
    ```
 
-  7. Run npm start in folder "backend", then run npm start in folder "frontend"
+7. npm start backend and frontend and you're done!
 
 
 
