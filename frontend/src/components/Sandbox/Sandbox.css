@@ -379,10 +379,11 @@ section {
 .errornotebooktwo {
   background-color: lightblue;
   position: absolute;
-  left: 2rem;
+  left: 27rem;
   color: red;
   top: 1rem;
   right: 56rem;
+  z-index: 1;
 }
 
 .thenotes {
