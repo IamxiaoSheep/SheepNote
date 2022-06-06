@@ -12,6 +12,7 @@ import {
   saveNotes,
 } from "../../store/notes";
 import * as sessionActions from "../../store/session";
+import notallowed from "../../imgs/unauthorized.gif";
 function MyNotes() {
   const dispatch = useDispatch();
   const { noteId } = useParams();
@@ -173,7 +174,14 @@ function MyNotes() {
   return (
     <>
       {!view ? (
-        <p>Sorry Mate Page Doesn't Exist</p>
+        <div className="areyoulost">
+          <p>Are you lost? </p>
+          <div>
+            <NavLink to="/">
+              <img className="notallowed" src={notallowed} />
+            </NavLink>
+          </div>
+        </div>
       ) : (
         <div className="notesonly">
           <nav className="onemainnav">

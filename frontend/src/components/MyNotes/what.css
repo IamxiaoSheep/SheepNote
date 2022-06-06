@@ -23,6 +23,7 @@
   height: 5rem;
   width: 40rem;
   right: -23rem;
+  background-color: whitesmoke;
 }
 
 .bottomnotes {
@@ -31,6 +32,7 @@
   width: 40rem;
   right: -23rem;
   top: 5rem;
+  background-color: white;
 }
 .cancelnote {
   position: absolute;
@@ -59,6 +61,7 @@
   width: 40rem;
   left: 54rem;
   top: 1rem;
+  background-color: whitesmoke;
 }
 
 .editrealnotestop {
@@ -68,6 +71,7 @@
   left: 54rem;
   top: 6rem;
   bottom: 1rem;
+  background-color: white;
 }
 
 .saverealnote {
@@ -102,4 +106,8 @@
 
 form input::-webkit-input-placeholder {
   text-align: center;
+}
+
+.areyoulost {
+  top: 10rem;
 }

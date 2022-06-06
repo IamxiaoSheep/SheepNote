@@ -245,6 +245,7 @@ function Sandbox() {
           </div>
 
           <div className="onemaininfo">
+            <div className="previewmynotebook">Preview Your Notes Here!</div>
             {/* THIS IS WHERE THE BUTTON RENDERS THE READ OF CRUD 1/4 */}
             <div className="containerfornotes">
               <p className="text">Where is our head today?!</p>
